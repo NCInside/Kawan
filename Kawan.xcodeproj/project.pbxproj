@@ -11,6 +11,7 @@
 		6AEC93DD2C05C2F1003A54F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93DC2C05C2F1003A54F5 /* ContentView.swift */; };
 		6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */; };
 		6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */; };
+		6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93E82C05C4E7003A54F5 /* HomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		6AEC93DC2C05C2F1003A54F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		6AEC93E82C05C4E7003A54F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +56,7 @@
 				6AEC93DA2C05C2F1003A54F5 /* AppDelegate.swift */,
 				6AEC93DC2C05C2F1003A54F5 /* ContentView.swift */,
 				6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */,
+				6AEC93E82C05C4E7003A54F5 /* HomeView.swift */,
 				6AEC93E02C05C2F2003A54F5 /* Preview Content */,
 			);
 			path = Kawan;
@@ -137,6 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */,
 				6AEC93DD2C05C2F1003A54F5 /* ContentView.swift in Sources */,
 				6AEC93DB2C05C2F1003A54F5 /* AppDelegate.swift in Sources */,
 			);
