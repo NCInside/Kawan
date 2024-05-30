@@ -11,7 +11,8 @@ import SceneKit
 struct HomeView: View {
     @State private var isExpand = false
     @State private var goToAnimal = false
-    
+    @State private var positions: [HashablePoint] = []
+        
     var body: some View {
         NavigationStack {
             ZStack {
@@ -22,12 +23,10 @@ struct HomeView: View {
                     .fill(Color(red: 177/255, green: 207/255, blue: 134/255))
                     .frame(width: 350)
                     .overlay(
-                        GeometryReader { geometry in
-                            ForEach(0..<3) { _ in
-                                SceneKitView(modelName: "Shiba.usdz", navigateToContentView: $goToAnimal)
-                                    .frame(width: 120, height: 120)
-                                    .position(CGPoint(x: CGFloat.random(in: 0...geometry.size.width), y: CGFloat.random(in: 0...geometry.size.height)))
-                            }
+                        ForEach(positions, id: \.self) { position in
+                            SceneKitView(modelName: "Shiba.usdz", navigateToContentView: $goToAnimal)
+                                .frame(width: 120, height: 120)
+                                .position(position.point)
                         }
                     )
                     .offset(y: -50)
@@ -53,6 +52,16 @@ struct HomeView: View {
             .overlay(NavigationLink(
                 destination: CaptureView(),
                 isActive: $goToAnimal) {EmptyView()})
+        }
+        .onAppear {
+            generatePositions()
+        }
+    }
+    
+    func generatePositions() {
+        for _ in 0..<3 {
+            let position = CGPoint(x: CGFloat.random(in: 0...350), y: CGFloat.random(in: 0...350))
+            positions.append(HashablePoint(point: position))
         }
     }
 }
@@ -123,6 +132,19 @@ struct SceneKitView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: SCNView, context: Context) {}
+}
+
+struct HashablePoint: Hashable {
+    let point: CGPoint
+
+    static func == (lhs: HashablePoint, rhs: HashablePoint) -> Bool {
+        return lhs.point == rhs.point
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(point.x)
+        hasher.combine(point.y)
+    }
 }
 
 #Preview {
