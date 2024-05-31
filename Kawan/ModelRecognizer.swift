@@ -1,10 +1,9 @@
 //
 //  ModelRecognizer.swift
-//  Kawan
+//  testVisionKit
 //
 //  Created by Nicholas Dylan Lienardi on 30/05/24.
 //
-
 import SwiftUI
 import RealityKit
 import CoreML
@@ -22,7 +21,7 @@ class ModelRecognizer: ObservableObject {
     @Published var isPinching: Bool = false
     
     // call the continuouslyUpdate function every half second
-    var timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+    var timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: { _ in
         continuouslyUpdate()
     })
 }
@@ -47,26 +46,36 @@ func continuouslyUpdate() {
                     let thumbTip = try results.recognizedPoints(.thumb)[.thumbTip]
                     let indexTip = try results.recognizedPoints(.indexFinger)[.indexTip]
 
-                    if thumbTip?.confidence ?? 0.0 > 0.3 && indexTip?.confidence ?? 0.0 > 0.3 {
+                    if thumbTip?.confidence ?? 0.0 > 0.5 && indexTip?.confidence ?? 0.0 > 0.5 {
                         // Do something with the points
+                        print(thumbTip!.confidence)
+                        print(indexTip!.confidence)
+
                         let thumbTipPosition = CGPoint(x: thumbTip!.location.x, y: 1 - thumbTip!.location.y)
                         let indexTipPosition = CGPoint(x: indexTip!.location.x, y: 1 - indexTip!.location.y)
 
                         // Check for a pinch gesture
                         let distance = hypot(thumbTipPosition.x - indexTipPosition.x, thumbTipPosition.y - indexTipPosition.y)
-                        if distance < 0.1 {
+                        if distance < 0.08 {
                             DispatchQueue.main.async {
                                 recogd.isPinching = true
-                                print("test")
                             }
                         } else {
                             DispatchQueue.main.async {
                                 recogd.isPinching = false
                             }
                         }
+                    } else {
+                        DispatchQueue.main.async {
+                            recogd.isPinching = false
+                        }
                     }
                 } catch {
                     print("Error processing hand pose observation: \(error.localizedDescription)")
+                }
+            } else {
+                DispatchQueue.main.async {
+                    recogd.isPinching = false
                 }
             }
         } catch {
@@ -74,3 +83,4 @@ func continuouslyUpdate() {
         }
     }
 }
+

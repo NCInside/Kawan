@@ -53,7 +53,7 @@ struct TameARViewContainer: UIViewRepresentable {
 //        let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.moveModelToUserPosition))
 //        arView.addGestureRecognizer(tapGesture)
         
-        _ = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true, block: { _ in
+        _ = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { _ in
             if recogd.isPinching{
                 context.coordinator.moveModelToUserPosition()
             }
@@ -95,7 +95,7 @@ struct TameARViewContainer: UIViewRepresentable {
             let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
 
             // Calculate the position in front of the camera
-            let targetPosition = cameraPosition + forwardDirection * 7 // Move 1.5 meters in front of the camera
+            let targetPosition = cameraPosition + forwardDirection * 2 // Move 1.5 meters in front of the camera
             
             let lookPos = cameraPosition + forwardDirection * 100
 
@@ -117,7 +117,7 @@ struct TameARViewContainer: UIViewRepresentable {
             // Perform the move animation
             entity.move(to: targetTransform, relativeTo: entity.parent, duration: duration, timingFunction: .easeInOut)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.425) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.405) {
                 entity.look(at: cameraPos, from: targetPosition, relativeTo: nil)
             }
             
