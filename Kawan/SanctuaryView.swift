@@ -26,20 +26,22 @@ struct SanctuaryView: View {
                     .foregroundStyle(.white)
                     .fontWeight(.bold)
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                LazyVGrid(columns: flexibleColumn, spacing: 20) {
-                    ForEach(animals, id: \.id) { animal in
-                        VStack {
-                            ZStack {
-                                Circle()
-                                    .stroke(.white, lineWidth: 6)
-                                    .fill(Color(red: 177/255, green: 207/255, blue: 134/255))
-                                    .padding(10)
-                                SceneKitView(modelName: animal.genus + ".usdz", navigateToContentView: $goToAnimal)
-                                    .frame(width: 180, height: 180)
+                ScrollView {
+                    LazyVGrid(columns: flexibleColumn, spacing: 20) {
+                        ForEach(animals, id: \.id) { animal in
+                            VStack {
+                                ZStack {
+                                    Circle()
+                                        .stroke(.white, lineWidth: 6)
+                                        .fill(Color(red: 177/255, green: 207/255, blue: 134/255))
+                                        .padding(10)
+                                    SceneKitView(modelName: animal.genus + ".usdz", navigateToContentView: $goToAnimal)
+                                        .frame(width: 180, height: 180)
+                                }
+                                Text(animal.name)
+                                    .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
+                                    .foregroundStyle(.white)
                             }
-                            Text(animal.name)
-                                .fontWeight(/*@START_MENU_TOKEN@*/.bold/*@END_MENU_TOKEN@*/)
-                                .foregroundStyle(.white)
                         }
                     }
                 }
