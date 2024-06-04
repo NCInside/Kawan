@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 
 struct SanctuaryView: View {
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var context
     @State private var goToAnimal = false
     @Query(sort: \Animal.date, order: .reverse) private var animals: [Animal]
@@ -21,11 +22,10 @@ struct SanctuaryView: View {
         ZStack {
             Color(red: 160/255, green: 193/255, blue: 114/255)
                 .ignoresSafeArea()
+//                .onAppear {
+//                    createAnimal(context: context)
+//                }
             VStack {
-                Text("Sanctuary")
-                    .foregroundStyle(.white)
-                    .fontWeight(.bold)
-                    .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 ScrollView {
                     LazyVGrid(columns: flexibleColumn, spacing: 20) {
                         ForEach(animals, id: \.id) { animal in
@@ -35,7 +35,7 @@ struct SanctuaryView: View {
                                         .stroke(.white, lineWidth: 6)
                                         .fill(Color(red: 177/255, green: 207/255, blue: 134/255))
                                         .padding(10)
-                                    SceneKitView(modelName: animal.genus + ".usdz", navigateToContentView: $goToAnimal)
+                                    Animal3DInteractable(modelName: animal.genus + ".usdz", navigateToContentView: $goToAnimal)
                                         .frame(width: 180, height: 180)
                                 }
                                 Text(animal.name)
@@ -45,6 +45,21 @@ struct SanctuaryView: View {
                         }
                     }
                 }
+            }
+        }
+        .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+                    Image(systemName: "figure.run")
+                        .imageScale(.large)
+                        .foregroundStyle(.white)
+                }
+            }
+            ToolbarItem(placement: .principal) {
+                Text("Sanctuary")
+                    .font(.system(size: 32, weight: .bold))
+                    .foregroundStyle(.white)
             }
         }
     }
