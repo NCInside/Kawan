@@ -7,17 +7,27 @@
 
 import UIKit
 import SwiftUI
+import SwiftData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    let modelContainer: ModelContainer
 
-
+    override init() {
+        do {
+            modelContainer = try ModelContainer(for: Animal.self)
+        } catch {
+            fatalError("Failed to initialize ModelContainer: \(error)")
+        }
+        super.init()
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = HomeView()
+        let contentView = HomeView().modelContainer(modelContainer)
 
         // Use a UIHostingController as window root view controller.
         let window = UIWindow(frame: UIScreen.main.bounds)

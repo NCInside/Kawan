@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		6AB889E12C0725D600D4D0AD /* Shiba.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AB889E02C0725D600D4D0AD /* Shiba.usdz */; };
 		6AB889E32C07325700D4D0AD /* CaptureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB889E22C07325700D4D0AD /* CaptureView.swift */; };
+		6AE7D0792C0DA3C900F95D2C /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */; };
+		6AE7D07B2C0DA62300F95D2C /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7D07A2C0DA62300F95D2C /* Animal.swift */; };
 		6AEC93DB2C05C2F1003A54F5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93DA2C05C2F1003A54F5 /* AppDelegate.swift */; };
 		6AEC93DD2C05C2F1003A54F5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93DC2C05C2F1003A54F5 /* ContentView.swift */; };
 		6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */; };
@@ -21,6 +23,9 @@
 /* Begin PBXFileReference section */
 		6AB889E02C0725D600D4D0AD /* Shiba.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Shiba.usdz; sourceTree = "<group>"; };
 		6AB889E22C07325700D4D0AD /* CaptureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureView.swift; sourceTree = "<group>"; };
+		6ACA571A2C09C544009279B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
+		6AE7D07A2C0DA62300F95D2C /* Animal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animal.swift; sourceTree = "<group>"; };
 		6AEC93D72C05C2F1003A54F5 /* Kawan.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kawan.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AEC93DA2C05C2F1003A54F5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AEC93DC2C05C2F1003A54F5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -42,11 +47,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6A055BD52C0EF2C100F8E36D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6AEC93CE2C05C2F1003A54F5 = {
 			isa = PBXGroup;
 			children = (
 				6AEC93D92C05C2F1003A54F5 /* Kawan */,
 				6AEC93D82C05C2F1003A54F5 /* Products */,
+				6A055BD52C0EF2C100F8E36D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -61,9 +74,12 @@
 		6AEC93D92C05C2F1003A54F5 /* Kawan */ = {
 			isa = PBXGroup;
 			children = (
+				6AE7D07A2C0DA62300F95D2C /* Animal.swift */,
+				6ACA571A2C09C544009279B7 /* Info.plist */,
 				6AEC93DA2C05C2F1003A54F5 /* AppDelegate.swift */,
 				6AEC93DC2C05C2F1003A54F5 /* ContentView.swift */,
 				6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */,
+				6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */,
 				6AB889E22C07325700D4D0AD /* CaptureView.swift */,
 				6AEC93E82C05C4E7003A54F5 /* HomeView.swift */,
 				6AEC93E02C05C2F2003A54F5 /* Preview Content */,
@@ -154,10 +170,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				925F763E2C0886380048DB93 /* TameView.swift in Sources */,
+				6AE7D07B2C0DA62300F95D2C /* Animal.swift in Sources */,
 				6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */,
 				6AEC93DD2C05C2F1003A54F5 /* ContentView.swift in Sources */,
 				925F76402C0886910048DB93 /* ModelRecognizer.swift in Sources */,
 				6AEC93DB2C05C2F1003A54F5 /* AppDelegate.swift in Sources */,
+				6AE7D0792C0DA3C900F95D2C /* SanctuaryView.swift in Sources */,
 				6AB889E32C07325700D4D0AD /* CaptureView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -292,10 +310,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Kawan/Preview Content\"";
-				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				DEVELOPMENT_TEAM = KKTJNS7KB7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Kawan/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
@@ -306,7 +326,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ada.Kawan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -323,10 +343,12 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Kawan/Preview Content\"";
-				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				DEVELOPMENT_TEAM = KKTJNS7KB7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Kawan/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Please?";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
@@ -337,7 +359,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.0;
 				PRODUCT_BUNDLE_IDENTIFIER = ada.Kawan;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

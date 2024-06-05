@@ -6,39 +6,167 @@
 //
 
 import SwiftUI
+import Photos
 import RealityKit
+import SceneKit
 
 struct ContentView : View {
+    @State private var isCaptured = false
+    
     var body: some View {
-        ARViewContainer().edgesIgnoringSafeArea(.all)
+        TameARViewContainer()
+            .edgesIgnoringSafeArea(.all)
+            .overlay(
+                Button(action: {isCaptured.toggle()}) {
+                    Label("Screenshot", systemImage: "camera.fill")
+                    .font(.system(size: 48))
+                }
+                .labelStyle(.iconOnly)
+                .foregroundColor(.white)
+                .offset(y: 325)
+            )
+            .sheet(isPresented: $isCaptured, content: {
+                SheetView()
+            })
+    }
+    
+    func takeScreenshotAndSaveToGallery() {
+        guard let rootView = UIApplication.shared.windows.first?.rootViewController?.view else {
+                return
+            }
+            
+        for subview in rootView.subviews {
+            if let arView = subview as? ARView {
+                arView.snapshot(saveToHDR: false) { image in
+                    guard let image = image else {
+                        print("Failed to capture ARView snapshot")
+                        return
+                    }
+                    image.saveToGallery()
+                }
+                break
+            }
+        }
+    }
+
+}
+
+extension UIImage {
+    func saveToGallery() {
+        PHPhotoLibrary.shared().performChanges({
+            PHAssetChangeRequest.creationRequestForAsset(from: self)
+        }) { success, error in
+            if success {
+                print("Image successfully saved to gallery")
+            } else if let error = error {
+                print("Error saving image to gallery: \(error)")
+            }
+        }
     }
 }
 
-struct ARViewContainer: UIViewRepresentable {
-    
-    func makeUIView(context: Context) -> ARView {
-        
-        let arView = ARView(frame: .zero)
+struct SheetView: View {
+    @Environment(\.dismiss) var dismiss
+    @State private var nickname = ""
 
-        // Create a cube model
-        let mesh = MeshResource.generateBox(size: 0.1, cornerRadius: 0.005)
-        let material = SimpleMaterial(color: .gray, roughness: 0.15, isMetallic: true)
-        let model = ModelEntity(mesh: mesh, materials: [material])
-        model.transform.translation.y = 0.05
-
-        // Create horizontal plane anchor for the content
-        let anchor = AnchorEntity(.plane(.horizontal, classification: .any, minimumBounds: SIMD2<Float>(0.2, 0.2)))
-        anchor.children.append(model)
-
-        // Add the horizontal plane anchor to the scene
-        arView.scene.anchors.append(anchor)
-
-        return arView
-        
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {dismiss()}) {
+                    Label("Close", systemImage: "xmark")
+                        .font(.system(size: 32))
+                }
+                .padding(.horizontal, 20)
+                .foregroundStyle(.black)
+                .labelStyle(.iconOnly)
+            }
+            Text("Congratulations!")
+                .font(.system(.largeTitle, weight: .bold))
+                .padding(.top, 5)
+            Text("You caught a dog")
+                .font(.system(.title, weight: .medium))
+            Animal3DNonInteractable(modelName: "Shiba.usdz")
+                .frame(width: 300, height: 300)
+            TextField("Nickname", text: $nickname)
+                .padding()
+                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(red: 142/255, green: 177/255, blue: 92/255), lineWidth: 2))
+                .padding(.horizontal)
+            HStack {
+                VStack {
+                    Text("Diet")
+                        .padding(.horizontal)
+                        .background(Color(red: 177/255, green: 207/255, blue: 134/255))
+                        .foregroundStyle(.white)
+                        .font(.system(.headline, weight: .bold))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    Text("Carnivore")
+                        .foregroundStyle(.white)
+                        .font(.system(.subheadline, weight: .bold))
+                }
+                .padding()
+                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                .cornerRadius(10)
+                VStack {
+                    Text("Status")
+                        .padding(.horizontal)
+                        .background(Color(red: 177/255, green: 207/255, blue: 134/255))
+                        .foregroundStyle(.white)
+                        .font(.system(.headline, weight: .bold))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    Text("Domesticated")
+                        .foregroundStyle(.white)
+                        .font(.system(.subheadline, weight: .bold))
+                }
+                .padding()
+                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                .cornerRadius(10)
+                VStack {
+                    Text("Habitat")
+                        .padding(.horizontal)
+                        .background(Color(red: 177/255, green: 207/255, blue: 134/255))
+                        .foregroundStyle(.white)
+                        .font(.system(.headline, weight: .bold))
+                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                    Text("Urban")
+                        .foregroundStyle(.white)
+                        .font(.system(.subheadline, weight: .bold))
+                }
+                .padding()
+                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                .cornerRadius(10)
+            }
+            .padding(.vertical)
+            Button("DONE") {
+                dismiss()
+            }
+            .foregroundStyle(.white)
+            .font(.system(.largeTitle, weight: .bold))
+            .padding(.horizontal, 20)
+            .padding(.vertical, 10)
+            .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+            .clipShape(RoundedRectangle(cornerRadius: 30))
+            .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color(red: 142/255, green: 177/255, blue: 92/255), lineWidth: 2))
+        }
     }
+}
+
+struct Animal3DNonInteractable: UIViewRepresentable {
+    var modelName: String
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
-    
+    func makeUIView(context: Context) -> SCNView {
+        let scnView = SCNView()
+        scnView.scene = SCNScene(named: modelName)
+        scnView.allowsCameraControl = true
+        scnView.autoenablesDefaultLighting = true
+        scnView.backgroundColor = .clear
+                
+        return scnView
+    }
+
+    func updateUIView(_ uiView: SCNView, context: Context) {}
 }
 
 #Preview {

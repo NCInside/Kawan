@@ -24,7 +24,7 @@ struct HomeView: View {
                     .frame(width: 350)
                     .overlay(
                         ForEach(positions, id: \.self) { position in
-                            SceneKitView(modelName: "Shiba.usdz", navigateToContentView: $goToAnimal)
+                            Animal3DInteractable(modelName: "Shiba.usdz", navigateToContentView: $goToAnimal)
                                 .frame(width: 120, height: 120)
                                 .position(position.point)
                         }
@@ -50,7 +50,7 @@ struct HomeView: View {
                 .animation(.easeInOut)
             }
             .overlay(NavigationLink(
-                destination: CaptureView(),
+                destination: ContentView(),
                 isActive: $goToAnimal) {EmptyView()})
         }
         .onAppear {
@@ -98,14 +98,14 @@ struct HomeButton<Destination: View>: View {
     }
 }
 
-struct SceneKitView: UIViewRepresentable {
+struct Animal3DInteractable: UIViewRepresentable {
     var modelName: String
     @Binding var navigateToContentView: Bool
 
     class Coordinator: NSObject {
-        var parent: SceneKitView
+        var parent: Animal3DInteractable
 
-        init(parent: SceneKitView) {
+        init(parent: Animal3DInteractable) {
             self.parent = parent
         }
 
