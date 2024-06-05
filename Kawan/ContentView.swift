@@ -10,7 +10,7 @@ import RealityKit
 
 struct ContentView : View {
     var body: some View {
-        TameARViewContainer().edgesIgnoringSafeArea(.all)
+        ARViewContainer().edgesIgnoringSafeArea(.all)
     }
 }
 

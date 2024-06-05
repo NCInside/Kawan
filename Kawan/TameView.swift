@@ -16,20 +16,62 @@ import simd
 
 
 struct TameView : View {
-    @State private var isPinching = false
-    @State private var isOpen = false
-    @State private var position = Float()
     @ObservedObject var recogd: ModelRecognizer = .shared
+    @State var spawnFood = false
+    @GestureState private var isLongPressing = false
+
 
     var body: some View {
-
-        TameARViewContainer()
-                    .edgesIgnoringSafeArea(.all)
-    }
+            ZStack {
+                TameARViewContainer(spawnFood: $spawnFood)
+                
+                if spawnFood{
+                    VStack{
+                        Spacer()
+                        HStack{
+                            Button(action: {
+                                // Action to perform when the button is tapped
+                            }) {
+                                Image("vegBag")
+                                    .resizable()
+                                    .frame(width:150, height: 150)
+                                    .padding(.leading)
+                            }
+                            .simultaneousGesture(
+                                LongPressGesture(minimumDuration: 1.3).onEnded { _ in
+                                    // Your action for long press
+                                    recogd.feedMeat = true
+                                    print("Fed Meat")
+                                }
+                            )
+                            
+                            Spacer()
+                            
+                            Button(action: {
+                                // Action to perform when the button is tapped
+                            }) {
+                                Image("metBag")
+                                    .resizable()
+                                    .frame(width:150, height: 150)
+                                    .padding(.trailing)
+                            }
+                            .simultaneousGesture(
+                                LongPressGesture(minimumDuration: 1.3).onEnded { _ in
+                                    // Your action for long press
+                                    recogd.feedVeg = true
+                                    print("Fed Veg")
+                                }
+                            )
+                        }
+                    }
+                }
+            }
+        }
 }
 
 struct TameARViewContainer: UIViewRepresentable {
     @ObservedObject var recogd: ModelRecognizer = .shared
+    @Binding var spawnFood: Bool
 
     func makeUIView(context: Context) -> ARView {
         let arView = recogd.aView
@@ -40,6 +82,7 @@ struct TameARViewContainer: UIViewRepresentable {
         
         // Load the model and add it to the scene
         let modelEntity = try! Entity.loadModel(named: "Shiba.usdz")
+        modelEntity.name = "Animal"
         let anchorEntity = AnchorEntity(world: [0, 0, 0]) // Initially place the model 0.5 meters in front of the camera
         anchorEntity.addChild(modelEntity)
         arView.scene.addAnchor(anchorEntity)
@@ -49,16 +92,19 @@ struct TameARViewContainer: UIViewRepresentable {
         context.coordinator.modelEntity = modelEntity
         context.coordinator.anchorEntity = anchorEntity
         
-        // Add a tap gesture recognizer
-//        let tapGesture = UITapGestureRecognizer(target: context.coordinator, action: #selector(Coordinator.moveModelToUserPosition))
-//        arView.addGestureRecognizer(tapGesture)
-        
         _ = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { _ in
-            if recogd.isPinching{
+            if recogd.feedMeat || recogd.feedVeg{
+                context.coordinator.moveModelToFeedPosition()
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                    recogd.feedMeat = false
+                    recogd.feedVeg = false
+                }
+                //animate eating here
+            } else if recogd.isPinching{
                 context.coordinator.moveModelToUserPosition()
+                spawnFood = true
             }
         })
-        
         return arView
     }
     
@@ -77,7 +123,8 @@ struct TameARViewContainer: UIViewRepresentable {
             guard let arView = arView,
                   let currentFrame = arView.session.currentFrame,
                   let anchorEntity = anchorEntity,
-                  let modelEntity = modelEntity else { return }
+                  let modelEntity = modelEntity?.findEntity(named: "Animal")
+            else { return }
             
             // Get the current camera transform
             let cameraTransform = currentFrame.camera.transform
@@ -95,13 +142,49 @@ struct TameARViewContainer: UIViewRepresentable {
             let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
 
             // Calculate the position in front of the camera
-            let targetPosition = cameraPosition + forwardDirection * 2 // Move 1.5 meters in front of the camera
+            let targetPosition = cameraPosition + forwardDirection * 3.5 // Move 1.5 meters in front of the camera
             
             let lookPos = cameraPosition + forwardDirection * 100
 
             
             // Animate the model's position to the camera's position
             moveEntity(modelEntity, to: targetPosition, rotation: lookAtRotation, duration: 1.4, cameraPos: lookPos) {
+                // Update the anchor's position in the world coordinates
+                anchorEntity.position = targetPosition
+                // Now that the model is positioned relative to the world, it won't follow the camera anymore
+            }
+        }
+        
+        @objc func moveModelToFeedPosition() {
+            guard let arView = arView,
+                  let currentFrame = arView.session.currentFrame,
+                  let anchorEntity = anchorEntity,
+                  let modelEntity = modelEntity?.findEntity(named: "Animal")
+            else { return }
+            
+            // Get the current camera transform
+            let cameraTransform = currentFrame.camera.transform
+            
+            // Extract the translation component from the matrix (which represents the position)
+            let cameraPosition = SIMD3<Float>(x: cameraTransform.columns.3.x, y: cameraTransform.columns.3.y, z: cameraTransform.columns.3.z)
+
+            // Calculate the forward direction vector based on the camera's rotation
+            let forwardDirection = SIMD3<Float>(x: -cameraTransform.columns.2.x, y: -cameraTransform.columns.2.y, z: -cameraTransform.columns.2.z)
+            
+            // Calculate the direction from the entity to the camera
+            let cameraDirection = normalize(cameraTransform.translation - anchorEntity.position)
+            
+            // Calculate the rotation quaternion to face the camera
+            let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
+
+            // Calculate the position in front of the camera
+            let targetPosition = cameraPosition + forwardDirection * 1.5 // Move 1.5 meters in front of the camera
+            
+            let lookPos = cameraPosition + forwardDirection * 100
+
+            
+            // Animate the model's position to the camera's position
+            moveEntity(modelEntity, to: targetPosition, rotation: lookAtRotation, duration: 1.95, cameraPos: lookPos) {
                 // Update the anchor's position in the world coordinates
                 anchorEntity.position = targetPosition
                 // Now that the model is positioned relative to the world, it won't follow the camera anymore
@@ -117,10 +200,9 @@ struct TameARViewContainer: UIViewRepresentable {
             // Perform the move animation
             entity.move(to: targetTransform, relativeTo: entity.parent, duration: duration, timingFunction: .easeInOut)
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1.405) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 entity.look(at: cameraPos, from: targetPosition, relativeTo: nil)
             }
-            
         }
     }
 }

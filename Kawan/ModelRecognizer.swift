@@ -19,6 +19,10 @@ class ModelRecognizer: ObservableObject {
     
     @Published var aView = ARView(frame: .zero)
     @Published var isPinching: Bool = false
+    @Published var shouldSpawnfood: Bool = false
+    @Published var feedMeat: Bool = false
+    @Published var feedVeg: Bool = false
+
     
     // call the continuouslyUpdate function every half second
     var timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: { _ in
@@ -29,7 +33,7 @@ class ModelRecognizer: ObservableObject {
 func continuouslyUpdate() {
     
     @ObservedObject var recogd: ModelRecognizer = .shared
-    var visionRequest = VNDetectHumanHandPoseRequest()
+    let visionRequest = VNDetectHumanHandPoseRequest()
     
     // access what we need from the observed object
     let v = recogd.aView
@@ -48,8 +52,6 @@ func continuouslyUpdate() {
 
                     if thumbTip?.confidence ?? 0.0 > 0.5 && indexTip?.confidence ?? 0.0 > 0.5 {
                         // Do something with the points
-                        print(thumbTip!.confidence)
-                        print(indexTip!.confidence)
 
                         let thumbTipPosition = CGPoint(x: thumbTip!.location.x, y: 1 - thumbTip!.location.y)
                         let indexTipPosition = CGPoint(x: indexTip!.location.x, y: 1 - indexTip!.location.y)
