@@ -16,6 +16,7 @@ import simd
 
 
 struct TameView : View {
+    var modelName: String?
     @ObservedObject var recogd: ModelRecognizer = .shared
     @State var spawnFood = false
     @GestureState private var isLongPressing = false
@@ -23,7 +24,7 @@ struct TameView : View {
 
     var body: some View {
             ZStack {
-                TameARViewContainer(spawnFood: $spawnFood)
+                TameARViewContainer(modelName: modelName, spawnFood: $spawnFood)
                 
                 if spawnFood{
                     VStack{
@@ -70,6 +71,7 @@ struct TameView : View {
 }
 
 struct TameARViewContainer: UIViewRepresentable {
+    var modelName: String?
     @ObservedObject var recogd: ModelRecognizer = .shared
     @Binding var spawnFood: Bool
 
@@ -81,7 +83,7 @@ struct TameARViewContainer: UIViewRepresentable {
         arView.session.run(configuration)
         
         // Load the model and add it to the scene
-        let modelEntity = try! Entity.loadModel(named: "Shiba.usdz")
+        let modelEntity = try! Entity.loadModel(named: modelName!)
         modelEntity.name = "Animal"
         let anchorEntity = AnchorEntity(world: [0, 0, 0]) // Initially place the model 0.5 meters in front of the camera
         anchorEntity.addChild(modelEntity)

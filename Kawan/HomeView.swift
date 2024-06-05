@@ -9,9 +9,11 @@ import SwiftUI
 import SceneKit
 
 struct HomeView: View {
+    @EnvironmentObject var animalBlueprint: AnimalBlueprint
     @State private var isExpand = false
     @State private var goToAnimal = false
     @State private var positions: [HashablePoint] = []
+    @State private var selectedModelName: String?
         
     var body: some View {
         NavigationStack {
@@ -24,7 +26,7 @@ struct HomeView: View {
                     .frame(width: 350)
                     .overlay(
                         ForEach(positions, id: \.self) { position in
-                            Animal3DInteractable(modelName: "Shiba.usdz", navigateToContentView: $goToAnimal)
+                            Animal3DInteractable(modelName: animalBlueprint.animalDict.keys.randomElement()! + ".usdz", navigateToContentView: $goToAnimal, selectedModelName: $selectedModelName)
                                 .frame(width: 120, height: 120)
                                 .position(position.point)
                         }
@@ -50,7 +52,7 @@ struct HomeView: View {
                 .animation(.easeInOut)
             }
             .overlay(NavigationLink(
-                destination: ContentView(),
+                destination: ContentView(modelName: selectedModelName),
                 isActive: $goToAnimal) {EmptyView()})
         }
         .onAppear {
@@ -101,6 +103,7 @@ struct HomeButton<Destination: View>: View {
 struct Animal3DInteractable: UIViewRepresentable {
     var modelName: String
     @Binding var navigateToContentView: Bool
+    @Binding var selectedModelName: String?
 
     class Coordinator: NSObject {
         var parent: Animal3DInteractable
@@ -110,6 +113,7 @@ struct Animal3DInteractable: UIViewRepresentable {
         }
 
         @objc func handleTap(_ gestureRecognizer: UITapGestureRecognizer) {
+            parent.selectedModelName = parent.modelName
             parent.navigateToContentView = true
         }
     }
@@ -149,4 +153,5 @@ struct HashablePoint: Hashable {
 
 #Preview {
     HomeView()
+        .environmentObject(AnimalBlueprint.shared)
 }

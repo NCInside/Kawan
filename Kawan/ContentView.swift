@@ -11,57 +11,15 @@ import RealityKit
 import SceneKit
 
 struct ContentView : View {
+    var modelName: String?
     @State private var isCaptured = false
     
     var body: some View {
-        TameARViewContainer()
+        TameView(modelName: modelName)
             .edgesIgnoringSafeArea(.all)
-            .overlay(
-                Button(action: {isCaptured.toggle()}) {
-                    Label("Screenshot", systemImage: "camera.fill")
-                    .font(.system(size: 48))
-                }
-                .labelStyle(.iconOnly)
-                .foregroundColor(.white)
-                .offset(y: 325)
-            )
             .sheet(isPresented: $isCaptured, content: {
                 SheetView()
             })
-    }
-    
-    func takeScreenshotAndSaveToGallery() {
-        guard let rootView = UIApplication.shared.windows.first?.rootViewController?.view else {
-                return
-            }
-            
-        for subview in rootView.subviews {
-            if let arView = subview as? ARView {
-                arView.snapshot(saveToHDR: false) { image in
-                    guard let image = image else {
-                        print("Failed to capture ARView snapshot")
-                        return
-                    }
-                    image.saveToGallery()
-                }
-                break
-            }
-        }
-    }
-
-}
-
-extension UIImage {
-    func saveToGallery() {
-        PHPhotoLibrary.shared().performChanges({
-            PHAssetChangeRequest.creationRequestForAsset(from: self)
-        }) { success, error in
-            if success {
-                print("Image successfully saved to gallery")
-            } else if let error = error {
-                print("Error saving image to gallery: \(error)")
-            }
-        }
     }
 }
 
