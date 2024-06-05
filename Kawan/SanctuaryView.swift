@@ -12,6 +12,7 @@ struct SanctuaryView: View {
     @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var context
     @State private var goToAnimal = false
+    @State private var selectedModelName: String?
     @Query(sort: \Animal.date, order: .reverse) private var animals: [Animal]
     private let flexibleColumn = [
         GridItem(.flexible(minimum: 100, maximum: 200)),
@@ -35,7 +36,7 @@ struct SanctuaryView: View {
                                         .stroke(.white, lineWidth: 6)
                                         .fill(Color(red: 177/255, green: 207/255, blue: 134/255))
                                         .padding(10)
-                                    Animal3DInteractable(modelName: animal.genus + ".usdz", navigateToContentView: $goToAnimal)
+                                    Animal3DInteractable(modelName: animal.genus + ".usdz", navigateToContentView: $goToAnimal, selectedModelName: $selectedModelName)
                                         .frame(width: 180, height: 180)
                                 }
                                 Text(animal.name)

@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let modelContainer: ModelContainer
+    let animalBlueprint = AnimalBlueprint.shared
 
     override init() {
         do {
@@ -27,7 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         // Create the SwiftUI view that provides the window contents.
-        let contentView = HomeView().modelContainer(modelContainer)
+        let contentView = HomeView()
+            .modelContainer(modelContainer)
+            .environmentObject(animalBlueprint)
 
         // Use a UIHostingController as window root view controller.
         let window = UIWindow(frame: UIScreen.main.bounds)
