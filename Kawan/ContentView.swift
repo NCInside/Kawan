@@ -12,9 +12,10 @@ import SceneKit
 
 struct ContentView : View {
     @State private var isCaptured = false
+    @State var spawnFood = false
     
     var body: some View {
-        TameARViewContainer()
+        TameARViewContainer(spawnFood: $spawnFood)
             .edgesIgnoringSafeArea(.all)
             .overlay(
                 Button(action: {isCaptured.toggle()}) {

@@ -55,10 +55,10 @@ func continuouslyUpdate() {
 
                         let thumbTipPosition = CGPoint(x: thumbTip!.location.x, y: 1 - thumbTip!.location.y)
                         let indexTipPosition = CGPoint(x: indexTip!.location.x, y: 1 - indexTip!.location.y)
-
+                        
                         // Check for a pinch gesture
                         let distance = hypot(thumbTipPosition.x - indexTipPosition.x, thumbTipPosition.y - indexTipPosition.y)
-                        if distance < 0.08 {
+                        if distance < 0.06 {
                             DispatchQueue.main.async {
                                 recogd.isPinching = true
                             }

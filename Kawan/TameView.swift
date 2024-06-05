@@ -20,7 +20,6 @@ struct TameView : View {
     @State var spawnFood = false
     @GestureState private var isLongPressing = false
 
-
     var body: some View {
             ZStack {
                 TameARViewContainer(spawnFood: $spawnFood)
@@ -38,10 +37,12 @@ struct TameView : View {
                                     .padding(.leading)
                             }
                             .simultaneousGesture(
-                                LongPressGesture(minimumDuration: 1.3).onEnded { _ in
+                                LongPressGesture(minimumDuration: 1.0).onEnded { _ in
                                     // Your action for long press
-                                    recogd.feedMeat = true
-                                    print("Fed Meat")
+                                    recogd.feedVeg = true
+                                    recogd.feedMeat = false
+                                    spawnFood = false
+                                    print("Fed Veg")
                                 }
                             )
                             
@@ -56,10 +57,12 @@ struct TameView : View {
                                     .padding(.trailing)
                             }
                             .simultaneousGesture(
-                                LongPressGesture(minimumDuration: 1.3).onEnded { _ in
+                                LongPressGesture(minimumDuration: 1.0).onEnded { _ in
                                     // Your action for long press
-                                    recogd.feedVeg = true
-                                    print("Fed Veg")
+                                    recogd.feedMeat = true
+                                    recogd.feedVeg = false
+                                    spawnFood = false
+                                    print("Fed Meat")
                                 }
                             )
                         }
