@@ -13,17 +13,35 @@ import SceneKit
 struct ContentView : View {
     var modelName: String?
     @State private var isCaptured = false
+    @ObservedObject var recogd: ModelRecognizer = .shared
+    @Environment(\.modelContext) private var context
+    @Environment(\.presentationMode) var presentationMode
+    
+    var isFed: Bool {
+        return recogd.feedMeat || recogd.feedVeg
+    }
     
     var body: some View {
-        TameView(modelName: modelName)
+        TameView(modelName: modelName, recogd: recogd)
             .edgesIgnoringSafeArea(.all)
-            .sheet(isPresented: $isCaptured, content: {
-                SheetView()
+            .sheet(isPresented: .constant(isFed), content: {
+                SheetView(modelName: modelName)
             })
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+                        Image(systemName: "figure.run")
+                            .imageScale(.large)
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
     }
 }
 
 struct SheetView: View {
+    var modelName: String?
     @Environment(\.dismiss) var dismiss
     @State private var nickname = ""
 
@@ -44,7 +62,7 @@ struct SheetView: View {
                 .padding(.top, 5)
             Text("You caught a dog")
                 .font(.system(.title, weight: .medium))
-            Animal3DNonInteractable(modelName: "Shiba.usdz")
+            Animal3DNonInteractable(modelName: modelName!)
                 .frame(width: 300, height: 300)
             TextField("Nickname", text: $nickname)
                 .padding()
@@ -98,6 +116,7 @@ struct SheetView: View {
             }
             .padding(.vertical)
             Button("DONE") {
+//                let animal = Animal(name: nickname, genus: <#T##String#>, diet: <#T##String#>, habitat: <#T##String#>, status: <#T##String#>, happy: 0, clean: 0, hunger: 0, date: Date.now)
                 dismiss()
             }
             .foregroundStyle(.white)
