@@ -15,7 +15,6 @@ struct ContentView : View {
     @State private var isCaptured = false
     @State private var deleteOldAnimal = false
     @ObservedObject var recogd: ModelRecognizer = .shared
-    @Environment(\.modelContext) private var context
     @Environment(\.presentationMode) var presentationMode
     
     var isFed: Bool {
@@ -48,24 +47,23 @@ struct ContentView : View {
 struct SheetView: View {
     var modelName: String?
     @Environment(\.dismiss) var dismiss
+    @Environment(\.modelContext) private var context
+    @EnvironmentObject var animalBlueprint: AnimalBlueprint
     @State private var nickname = ""
+    private let status = "Wild"
+    
+    private var animalSetting: AnimalBlueprint.animalSetting? {
+        guard let modelName = modelName else { return nil }
+        let key = modelName.replacingOccurrences(of: ".usdz", with: "")
+        return animalBlueprint.animalDict[key]
+    }
 
     var body: some View {
         VStack {
-            HStack {
-                Spacer()
-                Button(action: {dismiss()}) {
-                    Label("Close", systemImage: "xmark")
-                        .font(.system(size: 32))
-                }
-                .padding(.horizontal, 20)
-                .foregroundStyle(.black)
-                .labelStyle(.iconOnly)
-            }
             Text("Congratulations!")
                 .font(.system(.largeTitle, weight: .bold))
                 .padding(.top, 5)
-            Text("You caught a dog")
+            Text("You caught a " + animalSetting!.genus)
                 .font(.system(.title, weight: .medium))
             Animal3DNonInteractable(modelName: modelName!)
                 .frame(width: 300, height: 300)
@@ -83,7 +81,7 @@ struct SheetView: View {
                         .foregroundStyle(.white)
                         .font(.system(.headline, weight: .bold))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                    Text("Carnivore")
+                    Text(animalSetting!.diet)
                         .foregroundStyle(.white)
                         .font(.system(.subheadline, weight: .bold))
                 }
@@ -97,7 +95,7 @@ struct SheetView: View {
                         .foregroundStyle(.white)
                         .font(.system(.headline, weight: .bold))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                    Text("Domesticated")
+                    Text(status)
                         .foregroundStyle(.white)
                         .font(.system(.subheadline, weight: .bold))
                 }
@@ -111,7 +109,7 @@ struct SheetView: View {
                         .foregroundStyle(.white)
                         .font(.system(.headline, weight: .bold))
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                    Text("Urban")
+                    Text(animalSetting!.habitat)
                         .foregroundStyle(.white)
                         .font(.system(.subheadline, weight: .bold))
                 }
@@ -121,8 +119,14 @@ struct SheetView: View {
             }
             .padding(.vertical)
             Button("DONE") {
-//                let animal = Animal(name: nickname, genus: <#T##String#>, diet: <#T##String#>, habitat: <#T##String#>, status: <#T##String#>, happy: 0, clean: 0, hunger: 0, date: Date.now)
-                dismiss()
+                let animal = Animal(name: nickname, genus: animalSetting!.genus, diet: animalSetting!.diet, habitat: animalSetting!.habitat, status: status, happy: 0, clean: 0, hunger: 0, date: Date.now)
+                context.insert(animal)
+                do {
+                    try context.save()
+                } catch {
+                    print(error.localizedDescription)
+                }
+                
             }
             .foregroundStyle(.white)
             .font(.system(.largeTitle, weight: .bold))
@@ -131,6 +135,9 @@ struct SheetView: View {
             .background(Color(red: 160/255, green: 193/255, blue: 114/255))
             .clipShape(RoundedRectangle(cornerRadius: 30))
             .overlay(RoundedRectangle(cornerRadius: 30).stroke(Color(red: 142/255, green: 177/255, blue: 92/255), lineWidth: 2))
+        }
+        .onAppear {
+            print("Sheet")
         }
     }
 }
@@ -152,5 +159,5 @@ struct Animal3DNonInteractable: UIViewRepresentable {
 }
 
 #Preview {
-    ContentView()
+    ContentView(modelName: "Shiba.usdz")
 }

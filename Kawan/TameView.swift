@@ -17,7 +17,7 @@ import simd
 
 struct TameView : View {
     var modelName: String?
-    @ObservedObject var recogd: ModelRecognizer = .shared
+    @ObservedObject var recogd: ModelRecognizer
     @State var spawnFood = false
     @Binding var deleteOldAnimal: Bool
     @GestureState private var isLongPressing = false

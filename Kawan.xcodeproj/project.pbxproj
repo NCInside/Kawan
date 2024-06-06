@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		6AA88F1C2C104B6500DF94C0 /* AnimalBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA88F1B2C104B6500DF94C0 /* AnimalBlueprint.swift */; };
+		6AA88F202C11AA8A00DF94C0 /* Meat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AA88F1F2C11AA8A00DF94C0 /* Meat.usdz */; };
+		6AA88F222C11AA9E00DF94C0 /* Carrot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AA88F212C11AA9E00DF94C0 /* Carrot.usdz */; };
+		6AA88F242C11AAA600DF94C0 /* Cow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AA88F232C11AAA600DF94C0 /* Cow.usdz */; };
 		6AB889E12C0725D600D4D0AD /* Shiba.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AB889E02C0725D600D4D0AD /* Shiba.usdz */; };
 		6AE7D0792C0DA3C900F95D2C /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */; };
 		6AE7D07B2C0DA62300F95D2C /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7D07A2C0DA62300F95D2C /* Animal.swift */; };
@@ -22,6 +25,9 @@
 
 /* Begin PBXFileReference section */
 		6AA88F1B2C104B6500DF94C0 /* AnimalBlueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalBlueprint.swift; sourceTree = "<group>"; };
+		6AA88F1F2C11AA8A00DF94C0 /* Meat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Meat.usdz; path = ../../../../Downloads/Meat.usdz; sourceTree = "<group>"; };
+		6AA88F212C11AA9E00DF94C0 /* Carrot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Carrot.usdz; path = ../../../../Downloads/Carrot.usdz; sourceTree = "<group>"; };
+		6AA88F232C11AAA600DF94C0 /* Cow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Cow.usdz; path = ../../../../Downloads/Cow.usdz; sourceTree = "<group>"; };
 		6AB889E02C0725D600D4D0AD /* Shiba.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Shiba.usdz; sourceTree = "<group>"; };
 		6ACA571A2C09C544009279B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
@@ -92,6 +98,9 @@
 		6AEC93E02C05C2F2003A54F5 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				6AA88F232C11AAA600DF94C0 /* Cow.usdz */,
+				6AA88F212C11AA9E00DF94C0 /* Carrot.usdz */,
+				6AA88F1F2C11AA8A00DF94C0 /* Meat.usdz */,
 				6AB889E02C0725D600D4D0AD /* Shiba.usdz */,
 				6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */,
 			);
@@ -156,7 +165,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AA88F202C11AA8A00DF94C0 /* Meat.usdz in Resources */,
 				6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */,
+				6AA88F222C11AA9E00DF94C0 /* Carrot.usdz in Resources */,
+				6AA88F242C11AAA600DF94C0 /* Cow.usdz in Resources */,
 				6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */,
 				6AB889E12C0725D600D4D0AD /* Shiba.usdz in Resources */,
 			);

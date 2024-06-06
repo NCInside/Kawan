@@ -23,9 +23,6 @@ struct SanctuaryView: View {
         ZStack {
             Color(red: 160/255, green: 193/255, blue: 114/255)
                 .ignoresSafeArea()
-//                .onAppear {
-//                    createAnimal(context: context)
-//                }
             VStack {
                 ScrollView {
                     LazyVGrid(columns: flexibleColumn, spacing: 20) {
@@ -87,16 +84,4 @@ let previewContainer: ModelContainer = {
 
 func generateRandomAnimal() -> Animal {
     return Animal(name: "Bruh", genus: "Shiba", diet: "Carnivore", habitat: "Land", status: "Domesticated", happy: 30, clean: 30, hunger: 30, date: Date.now)
-}
-
-func createAnimal(context: ModelContext) -> Void {
-    for _ in 1...15 {
-        let animal = generateRandomAnimal()
-        context.insert(animal)
-    }
-    do {
-        try context.save()
-    } catch {
-        print(error.localizedDescription)
-    }
 }
