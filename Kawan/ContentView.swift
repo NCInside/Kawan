@@ -13,6 +13,7 @@ import SceneKit
 struct ContentView : View {
     var modelName: String?
     @State private var isCaptured = false
+    @State private var deleteOldAnimal = false
     @ObservedObject var recogd: ModelRecognizer = .shared
     @Environment(\.modelContext) private var context
     @Environment(\.presentationMode) var presentationMode
@@ -22,7 +23,7 @@ struct ContentView : View {
     }
     
     var body: some View {
-        TameView(modelName: modelName, recogd: recogd)
+        TameView(modelName: modelName, recogd: recogd, deleteOldAnimal: $deleteOldAnimal)
             .edgesIgnoringSafeArea(.all)
             .sheet(isPresented: .constant(isFed), content: {
                 SheetView(modelName: modelName)
@@ -30,7 +31,11 @@ struct ContentView : View {
             .navigationBarBackButtonHidden(true)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {self.presentationMode.wrappedValue.dismiss()}) {
+                    Button(action: {
+                        self.presentationMode.wrappedValue.dismiss()
+                        deleteOldAnimal = true
+                        
+                    }) {
                         Image(systemName: "figure.run")
                             .imageScale(.large)
                             .foregroundStyle(.white)

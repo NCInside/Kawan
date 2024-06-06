@@ -19,11 +19,12 @@ struct TameView : View {
     var modelName: String?
     @ObservedObject var recogd: ModelRecognizer = .shared
     @State var spawnFood = false
+    @Binding var deleteOldAnimal: Bool
     @GestureState private var isLongPressing = false
 
     var body: some View {
             ZStack {
-                TameARViewContainer(modelName: modelName, spawnFood: $spawnFood)
+                TameARViewContainer(modelName: modelName, spawnFood: $spawnFood, deleteOldAnimal: $deleteOldAnimal)
                 
                 if spawnFood{
                     VStack{
@@ -77,8 +78,14 @@ struct TameARViewContainer: UIViewRepresentable {
     var modelName: String?
     @ObservedObject var recogd: ModelRecognizer = .shared
     @Binding var spawnFood: Bool
+    @Binding var deleteOldAnimal: Bool
 
     func makeUIView(context: Context) -> ARView {
+        if deleteOldAnimal{
+            recogd.aView = ARView()
+            deleteOldAnimal = false
+        }
+        
         let arView = recogd.aView
         
         // Create an AR session configuration
@@ -88,7 +95,19 @@ struct TameARViewContainer: UIViewRepresentable {
         // Load the model and add it to the scene
         let modelEntity = try! Entity.loadModel(named: modelName!)
         modelEntity.name = "Animal"
-        let anchorEntity = AnchorEntity(world: [0, 0, 0]) // Initially place the model 0.5 meters in front of the camera
+        
+        if modelName!.contains("Cow.usdz"){
+            modelEntity.scale = SIMD3<Float>(0.3, 0.3, 0.3)
+            for anim in modelEntity.availableAnimations {
+                modelEntity.playAnimation(anim.repeat(duration: .infinity),
+                                          transitionDuration: 1.25,
+                                          startsPaused: false)
+            }
+
+        }
+        
+        
+        let anchorEntity = AnchorEntity(world: [0, -1, 1])
         anchorEntity.addChild(modelEntity)
         arView.scene.addAnchor(anchorEntity)
         
@@ -100,10 +119,10 @@ struct TameARViewContainer: UIViewRepresentable {
         _ = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { _ in
             if recogd.feedMeat || recogd.feedVeg{
                 context.coordinator.moveModelToFeedPosition()
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                    recogd.feedMeat = false
-                    recogd.feedVeg = false
-                }
+//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//                    recogd.feedMeat = false
+//                    recogd.feedVeg = false
+//                }
                 //animate eating here
             } else if recogd.isPinching{
                 context.coordinator.moveModelToUserPosition()

@@ -37,10 +37,10 @@ struct HomeView: View {
                         .ignoresSafeArea()
                         .opacity(0.5)
                 }
-                HomeButton(destination: ContentView(), buttonLabel: "Inventory", buttonSymbol: "archivebox", xMove: 45, yMove: 160, isExpand: $isExpand)
-                HomeButton(destination: ContentView(), buttonLabel: "Shop", buttonSymbol: "bag", xMove: 110, yMove: 250, isExpand: $isExpand)
-                HomeButton(destination: ContentView(), buttonLabel: "Minigame", buttonSymbol: "gamecontroller", xMove: -45, yMove: 160, isExpand: $isExpand)
-                HomeButton(destination: TameView(), buttonLabel: "Sanctuary", buttonSymbol: "map", xMove: -110, yMove: 250, isExpand: $isExpand)
+                HomeButton(destination: SanctuaryView(), buttonLabel: "Inventory", buttonSymbol: "archivebox", xMove: 45, yMove: 160, isExpand: $isExpand)
+                HomeButton(destination: SanctuaryView(), buttonLabel: "Shop", buttonSymbol: "bag", xMove: 110, yMove: 250, isExpand: $isExpand)
+                HomeButton(destination: SanctuaryView(), buttonLabel: "Minigame", buttonSymbol: "gamecontroller", xMove: -45, yMove: 160, isExpand: $isExpand)
+                HomeButton(destination: SanctuaryView(), buttonLabel: "Sanctuary", buttonSymbol: "map", xMove: -110, yMove: 250, isExpand: $isExpand)
                 Button(action: {self.isExpand.toggle()}) {
                     Label("Center", systemImage: "plus.circle.fill")
                     .font(.system(size: 64))

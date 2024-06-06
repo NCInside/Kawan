@@ -17,6 +17,7 @@ class AnimalBlueprint: ObservableObject {
     }
 
     @Published var animalDict: [String: animalSetting] = [
-        "Shiba": animalSetting(genus: "Dog", diet: "Carnivore", habitat: "Land")
+        "Shiba": animalSetting(genus: "Dog", diet: "Carnivore", habitat: "Land"),
+        "Cow": animalSetting(genus: "Cow", diet: "Herbivore", habitat: "Land")
     ]
 }
