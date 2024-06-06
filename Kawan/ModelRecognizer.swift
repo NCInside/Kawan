@@ -19,7 +19,8 @@ class ModelRecognizer: ObservableObject {
     
     @Published var aView = ARView(frame: .zero)
     @Published var isPinching: Bool = false
-    @Published var shouldSpawnfood: Bool = false
+    @Published var spawnMeat: Bool = false
+    @Published var spawnVeggie: Bool = false
     @Published var feedMeat: Bool = false
     @Published var feedVeg: Bool = false
 

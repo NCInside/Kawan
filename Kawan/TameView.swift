@@ -41,8 +41,7 @@ struct TameView : View {
                             .simultaneousGesture(
                                 LongPressGesture(minimumDuration: 1.0).onEnded { _ in
                                     // Your action for long press
-                                    recogd.feedVeg = true
-                                    recogd.feedMeat = false
+                                    recogd.spawnVeggie = true
                                     spawnFood = false
                                     print("Fed Veg")
                                 }
@@ -61,8 +60,7 @@ struct TameView : View {
                             .simultaneousGesture(
                                 LongPressGesture(minimumDuration: 1.0).onEnded { _ in
                                     // Your action for long press
-                                    recogd.feedMeat = true
-                                    recogd.feedVeg = false
+                                    recogd.spawnMeat = true
                                     spawnFood = false
                                     print("Fed Meat")
                                 }
@@ -79,10 +77,15 @@ struct TameARViewContainer: UIViewRepresentable {
     @ObservedObject var recogd: ModelRecognizer = .shared
     @Binding var spawnFood: Bool
     @Binding var deleteOldAnimal: Bool
+    @State var foodName: String?
+    @State var showMeat = false
+    @State var showVeg = false
 
     func makeUIView(context: Context) -> ARView {
         if deleteOldAnimal{
-            recogd.aView = ARView()
+            for anchor in recogd.aView.scene.anchors {
+                recogd.aView.scene.removeAnchor(anchor)
+            }
             deleteOldAnimal = false
         }
         
@@ -96,6 +99,11 @@ struct TameARViewContainer: UIViewRepresentable {
         let modelEntity = try! Entity.loadModel(named: modelName!)
         modelEntity.name = "Animal"
         
+        let carrotEntity = try! Entity.loadModel(named: "Carrot.usdz")
+        carrotEntity.name = "carrot"
+        let meatEntity = try! Entity.loadModel(named: "Meat.usdz")
+        meatEntity.name = "meat"
+        
         if modelName!.contains("Cow.usdz"){
             modelEntity.scale = SIMD3<Float>(0.3, 0.3, 0.3)
             for anim in modelEntity.availableAnimations {
@@ -103,13 +111,23 @@ struct TameARViewContainer: UIViewRepresentable {
                                           transitionDuration: 1.25,
                                           startsPaused: false)
             }
-
         }
         
+        carrotEntity.scale = SIMD3<Float>(0.05, 0.05, 0.05)
+        meatEntity.scale = SIMD3<Float>(0.05, 0.05, 0.05)
+
         
-        let anchorEntity = AnchorEntity(world: [0, -1, 1])
+        let anchorEntity = AnchorEntity(world: [0, 0, 0])
+        let anchorCarrot = AnchorEntity(world: [0, 0, 0])
+        let anchorMeat = AnchorEntity(world: [0, 0, 0])
+        
         anchorEntity.addChild(modelEntity)
+        anchorCarrot.addChild(carrotEntity)
+        anchorMeat.addChild(meatEntity)
+        
         arView.scene.addAnchor(anchorEntity)
+        arView.scene.addAnchor(anchorCarrot)
+        arView.scene.addAnchor(anchorMeat)
         
         // Store the ARView, model, and anchor entities in the context coordinator
         context.coordinator.arView = arView
@@ -117,13 +135,36 @@ struct TameARViewContainer: UIViewRepresentable {
         context.coordinator.anchorEntity = anchorEntity
         
         _ = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { _ in
-            if recogd.feedMeat || recogd.feedVeg{
+            if recogd.spawnMeat || recogd.spawnVeggie{
                 context.coordinator.moveModelToFeedPosition()
 //                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
 //                    recogd.feedMeat = false
 //                    recogd.feedVeg = false
 //                }
+                if recogd.spawnMeat{
+                    showMeat = true
+                    showVeg = false
+                }
+                if recogd.spawnVeggie{
+                    showVeg = true
+                    showMeat = false
+                }
+                
                 //animate eating here
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
+                    context.coordinator.moveModelToFeedPosition()
+
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 4){
+                        if recogd.spawnMeat{
+                            recogd.feedMeat = true
+                        }
+                        if recogd.spawnVeggie{
+                            recogd.feedVeg = true
+                        }
+                    }
+                }
+                
             } else if recogd.isPinching{
                 context.coordinator.moveModelToUserPosition()
                 spawnFood = true
@@ -132,7 +173,11 @@ struct TameARViewContainer: UIViewRepresentable {
         return arView
     }
     
-    func updateUIView(_ uiView: ARView, context: Context) {}
+    func updateUIView(_ uiView: ARView, context: Context) {
+        uiView.scene.anchors[1].isEnabled = showVeg
+        uiView.scene.anchors[2].isEnabled = showMeat
+
+    }
     
     func makeCoordinator() -> Coordinator {
         Coordinator()
@@ -190,7 +235,7 @@ struct TameARViewContainer: UIViewRepresentable {
             let cameraTransform = currentFrame.camera.transform
             
             // Extract the translation component from the matrix (which represents the position)
-            let cameraPosition = SIMD3<Float>(x: cameraTransform.columns.3.x, y: cameraTransform.columns.3.y, z: cameraTransform.columns.3.z)
+            let cameraPosition = SIMD3<Float>(0, 0, -2)
 
             // Calculate the forward direction vector based on the camera's rotation
             let forwardDirection = SIMD3<Float>(x: -cameraTransform.columns.2.x, y: -cameraTransform.columns.2.y, z: -cameraTransform.columns.2.z)
@@ -202,7 +247,7 @@ struct TameARViewContainer: UIViewRepresentable {
             let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
 
             // Calculate the position in front of the camera
-            let targetPosition = cameraPosition + forwardDirection * 1.5 // Move 1.5 meters in front of the camera
+            let targetPosition = cameraPosition + forwardDirection * 1.5
             
             let lookPos = cameraPosition + forwardDirection * 100
 

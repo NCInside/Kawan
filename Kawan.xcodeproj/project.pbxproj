@@ -21,6 +21,9 @@
 		6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93E82C05C4E7003A54F5 /* HomeView.swift */; };
 		925F763E2C0886380048DB93 /* TameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763D2C0886380048DB93 /* TameView.swift */; };
 		925F76402C0886910048DB93 /* ModelRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763F2C0886910048DB93 /* ModelRecognizer.swift */; };
+		925F76502C119C000048DB93 /* Cow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 925F764F2C119C000048DB93 /* Cow.usdz */; };
+		925F76522C119C090048DB93 /* Meat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 925F76512C119C090048DB93 /* Meat.usdz */; };
+		925F76542C119C110048DB93 /* Carrot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 925F76532C119C110048DB93 /* Carrot.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +43,9 @@
 		6AEC93E82C05C4E7003A54F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		925F763D2C0886380048DB93 /* TameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TameView.swift; sourceTree = "<group>"; };
 		925F763F2C0886910048DB93 /* ModelRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRecognizer.swift; sourceTree = "<group>"; };
+		925F764F2C119C000048DB93 /* Cow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Cow.usdz; sourceTree = "<group>"; };
+		925F76512C119C090048DB93 /* Meat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Meat.usdz; sourceTree = "<group>"; };
+		925F76532C119C110048DB93 /* Carrot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Carrot.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,9 +104,9 @@
 		6AEC93E02C05C2F2003A54F5 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
-				6AA88F232C11AAA600DF94C0 /* Cow.usdz */,
-				6AA88F212C11AA9E00DF94C0 /* Carrot.usdz */,
-				6AA88F1F2C11AA8A00DF94C0 /* Meat.usdz */,
+				925F764F2C119C000048DB93 /* Cow.usdz */,
+				925F76532C119C110048DB93 /* Carrot.usdz */,
+				925F76512C119C090048DB93 /* Meat.usdz */,
 				6AB889E02C0725D600D4D0AD /* Shiba.usdz */,
 				6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */,
 			);
@@ -165,12 +171,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6AA88F202C11AA8A00DF94C0 /* Meat.usdz in Resources */,
+				925F76502C119C000048DB93 /* Cow.usdz in Resources */,
 				6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */,
-				6AA88F222C11AA9E00DF94C0 /* Carrot.usdz in Resources */,
-				6AA88F242C11AAA600DF94C0 /* Cow.usdz in Resources */,
 				6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */,
+				925F76522C119C090048DB93 /* Meat.usdz in Resources */,
 				6AB889E12C0725D600D4D0AD /* Shiba.usdz in Resources */,
+				925F76542C119C110048DB93 /* Carrot.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +328,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Kawan/Preview Content\"";
-				DEVELOPMENT_TEAM = KKTJNS7KB7;
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kawan/Info.plist;
@@ -355,7 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Kawan/Preview Content\"";
-				DEVELOPMENT_TEAM = KKTJNS7KB7;
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kawan/Info.plist;
