@@ -36,6 +36,16 @@ class ModelRecognizer: ObservableObject {
             aView.scene.removeAnchor(anchor)
         }
     }
+    
+    func resetVariables(){
+        isPinching = false
+        spawnMeat = false
+        spawnVeggie = false
+        feedMeat = false
+        feedVeg = false
+        caught = false
+        escape = false
+    }
 }
 
 func continuouslyUpdate() {

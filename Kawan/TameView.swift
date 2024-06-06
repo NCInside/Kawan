@@ -102,13 +102,10 @@ struct TameARViewContainer: UIViewRepresentable {
         let modelEntity = try! Entity.loadModel(named: modelName!)
         modelEntity.name = "Animal"
         
-        let carrotEntity = try! Entity.loadModel(named: "Carrot.usdz")
-        carrotEntity.name = "carrot"
-        let meatEntity = try! Entity.loadModel(named: "Meat.usdz")
-        meatEntity.name = "meat"
-        
         if modelName!.contains("Cow.usdz"){
             modelEntity.scale = SIMD3<Float>(0.3, 0.3, 0.3)
+            
+            //chage animations later
             for anim in modelEntity.availableAnimations {
                 modelEntity.playAnimation(anim.repeat(duration: .infinity),
                                           transitionDuration: 1.25,
@@ -116,13 +113,20 @@ struct TameARViewContainer: UIViewRepresentable {
             }
         }
         
-        carrotEntity.scale = SIMD3<Float>(0.5, 0.5, 0.5)
-        meatEntity.scale = SIMD3<Float>(0.5, 0.5, 0.5)
+        let carrotEntity = try! Entity.loadModel(named: "Carrot.usdz")
+        carrotEntity.name = "carrot"
+        
+        carrotEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
 
+        let meatEntity = try! Entity.loadModel(named: "Meat.usdz")
+        meatEntity.name = "meat"
+        
+        meatEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
+        
         
         let anchorEntity = AnchorEntity(world: [0, 0, 0])
-        let anchorCarrot = AnchorEntity(world: [0, 0, 0])
-        let anchorMeat = AnchorEntity(world: [0, 0, 0])
+        let anchorCarrot = AnchorEntity(world: [0, 0, -2])
+        let anchorMeat = AnchorEntity(world: [0, 0, -2])
         
         anchorEntity.addChild(modelEntity)
         anchorCarrot.addChild(carrotEntity)
@@ -131,6 +135,9 @@ struct TameARViewContainer: UIViewRepresentable {
         arView.scene.addAnchor(anchorEntity)
         arView.scene.addAnchor(anchorCarrot)
         arView.scene.addAnchor(anchorMeat)
+        
+        anchorCarrot.position = SIMD3(0,0,-10)
+        anchorMeat.position = SIMD3(0,0,-10)
         
         // Store the ARView, model, and anchor entities in the context coordinator
         context.coordinator.arView = arView
@@ -269,7 +276,7 @@ struct TameARViewContainer: UIViewRepresentable {
             let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
 
             // Calculate the position in front of the camera
-            let targetPosition = cameraPosition + forwardDirection * 1.5
+            let targetPosition = cameraPosition + forwardDirection * 1.0
             
             let lookPos = cameraPosition + forwardDirection * 100
 
