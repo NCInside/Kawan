@@ -23,12 +23,19 @@ class ModelRecognizer: ObservableObject {
     @Published var spawnVeggie: Bool = false
     @Published var feedMeat: Bool = false
     @Published var feedVeg: Bool = false
+    @Published var caught: Bool = false
+    @Published var escape: Bool = false
 
-    
     // call the continuouslyUpdate function every half second
     var timer = Timer.scheduledTimer(withTimeInterval: 0.15, repeats: true, block: { _ in
         continuouslyUpdate()
     })
+    
+    func resetCatch(){
+        for anchor in aView.scene.anchors {
+            aView.scene.removeAnchor(anchor)
+        }
+    }
 }
 
 func continuouslyUpdate() {

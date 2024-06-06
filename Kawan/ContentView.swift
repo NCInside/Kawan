@@ -32,8 +32,8 @@ struct ContentView : View {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
                         self.presentationMode.wrappedValue.dismiss()
-                        deleteOldAnimal = true
-                        
+                        //deleteOldAnimal = true
+                        //recogd.resetCatch()
                     }) {
                         Image(systemName: "figure.run")
                             .imageScale(.large)

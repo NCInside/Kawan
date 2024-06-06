@@ -17,7 +17,7 @@ import simd
 
 struct TameView : View {
     var modelName: String?
-    @ObservedObject var recogd: ModelRecognizer
+    @ObservedObject var recogd: ModelRecognizer = .shared
     @State var spawnFood = false
     @Binding var deleteOldAnimal: Bool
     @GestureState private var isLongPressing = false
@@ -72,8 +72,10 @@ struct TameView : View {
         }
 }
 
+
 struct TameARViewContainer: UIViewRepresentable {
     var modelName: String?
+    @EnvironmentObject var animalBlueprint: AnimalBlueprint
     @ObservedObject var recogd: ModelRecognizer = .shared
     @Binding var spawnFood: Bool
     @Binding var deleteOldAnimal: Bool
@@ -82,18 +84,19 @@ struct TameARViewContainer: UIViewRepresentable {
     @State var showVeg = false
 
     func makeUIView(context: Context) -> ARView {
-        if deleteOldAnimal{
-            for anchor in recogd.aView.scene.anchors {
-                recogd.aView.scene.removeAnchor(anchor)
-            }
-            deleteOldAnimal = false
-        }
-        
         let arView = recogd.aView
-        
         // Create an AR session configuration
         let configuration = ARWorldTrackingConfiguration()
         arView.session.run(configuration)
+        
+        
+//        if deleteOldAnimal{
+//            for anchor in recogd.aView.scene.anchors {
+//                recogd.aView.scene.removeAnchor(anchor)
+//            }
+//            deleteOldAnimal = false
+//        }
+        
         
         // Load the model and add it to the scene
         let modelEntity = try! Entity.loadModel(named: modelName!)
@@ -113,8 +116,8 @@ struct TameARViewContainer: UIViewRepresentable {
             }
         }
         
-        carrotEntity.scale = SIMD3<Float>(0.05, 0.05, 0.05)
-        meatEntity.scale = SIMD3<Float>(0.05, 0.05, 0.05)
+        carrotEntity.scale = SIMD3<Float>(0.5, 0.5, 0.5)
+        meatEntity.scale = SIMD3<Float>(0.5, 0.5, 0.5)
 
         
         let anchorEntity = AnchorEntity(world: [0, 0, 0])
@@ -157,10 +160,22 @@ struct TameARViewContainer: UIViewRepresentable {
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4){
                         if recogd.spawnMeat{
-                            recogd.feedMeat = true
+                            let key = modelName!.replacingOccurrences(of: ".usdz", with: "")
+                            if animalBlueprint.animalDict[key]!.diet.contains("Carnivore"){
+                                recogd.feedMeat = true
+                                recogd.caught = true
+                            }else{
+                                recogd.escape = true
+                            }
                         }
                         if recogd.spawnVeggie{
-                            recogd.feedVeg = true
+                            let key = modelName!.replacingOccurrences(of: ".usdz", with: "")
+                            if animalBlueprint.animalDict[key]!.diet.contains("Herbivore"){
+                                recogd.feedVeg = true
+                                recogd.caught = true
+                            }else{
+                                recogd.escape = true
+                            }
                         }
                     }
                 }
@@ -174,8 +189,15 @@ struct TameARViewContainer: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: ARView, context: Context) {
-        uiView.scene.anchors[1].isEnabled = showVeg
-        uiView.scene.anchors[2].isEnabled = showMeat
+        if !uiView.scene.anchors.isEmpty {
+            if uiView.scene.anchors.indices.contains(1) {
+                uiView.scene.anchors[1].isEnabled = showVeg
+            }
+            if uiView.scene.anchors.indices.contains(2) {
+                uiView.scene.anchors[2].isEnabled = showMeat
+            }
+        }
+        
 
     }
     
