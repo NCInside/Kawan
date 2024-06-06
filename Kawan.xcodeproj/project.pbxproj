@@ -16,6 +16,7 @@
 		6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */; };
 		6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */; };
 		6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93E82C05C4E7003A54F5 /* HomeView.swift */; };
+		715A1A532C11C8EF00EC34ED /* sapi.scn in Resources */ = {isa = PBXBuildFile; fileRef = 715A1A522C11C8EF00EC34ED /* sapi.scn */; };
 		925F763E2C0886380048DB93 /* TameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763D2C0886380048DB93 /* TameView.swift */; };
 		925F76402C0886910048DB93 /* ModelRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763F2C0886910048DB93 /* ModelRecognizer.swift */; };
 		925F76502C119C000048DB93 /* Cow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 925F764F2C119C000048DB93 /* Cow.usdz */; };
@@ -35,6 +36,7 @@
 		6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AEC93E82C05C4E7003A54F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		715A1A522C11C8EF00EC34ED /* sapi.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = sapi.scn; path = ../../sapi.scn; sourceTree = "<group>"; };
 		925F763D2C0886380048DB93 /* TameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TameView.swift; sourceTree = "<group>"; };
 		925F763F2C0886910048DB93 /* ModelRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRecognizer.swift; sourceTree = "<group>"; };
 		925F764F2C119C000048DB93 /* Cow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Cow.usdz; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 				6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */,
 				6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */,
 				6AEC93E82C05C4E7003A54F5 /* HomeView.swift */,
+				715A1A522C11C8EF00EC34ED /* sapi.scn */,
 				6AEC93E02C05C2F2003A54F5 /* Preview Content */,
 				925F763D2C0886380048DB93 /* TameView.swift */,
 				925F763F2C0886910048DB93 /* ModelRecognizer.swift */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				925F76502C119C000048DB93 /* Cow.usdz in Resources */,
+				715A1A532C11C8EF00EC34ED /* sapi.scn in Resources */,
 				6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */,
 				6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */,
 				925F76522C119C090048DB93 /* Meat.usdz in Resources */,
