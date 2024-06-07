@@ -103,7 +103,7 @@ struct TameARViewContainer: UIViewRepresentable {
         modelEntity.name = "Animal"
         
         if modelName!.contains("Cow.usdz"){
-            modelEntity.scale = SIMD3<Float>(0.3, 0.3, 0.3)
+            modelEntity.scale = SIMD3<Float>(0.4, 0.4, 0.4)
             
             //chage animations later
             for anim in modelEntity.availableAnimations {
@@ -116,17 +116,17 @@ struct TameARViewContainer: UIViewRepresentable {
         let carrotEntity = try! Entity.loadModel(named: "Carrot.usdz")
         carrotEntity.name = "carrot"
         
-        carrotEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
+        carrotEntity.scale = SIMD3<Float>(0.0008, 0.0008, 0.0008)
 
         let meatEntity = try! Entity.loadModel(named: "Meat.usdz")
         meatEntity.name = "meat"
         
-        meatEntity.scale = SIMD3<Float>(0.001, 0.001, 0.001)
+        meatEntity.scale = SIMD3<Float>(0.0015, 0.0015, 0.0015)
         
         
-        let anchorEntity = AnchorEntity(world: [0, 0, 0])
-        let anchorCarrot = AnchorEntity(world: [0, 0, -2])
-        let anchorMeat = AnchorEntity(world: [0, 0, -2])
+        let anchorEntity = AnchorEntity(world: [0, -2, -3])
+        let anchorCarrot = AnchorEntity(world: [-0.5, -2, -3])
+        let anchorMeat = AnchorEntity(world: [0, -2, -3])
         
         anchorEntity.addChild(modelEntity)
         anchorCarrot.addChild(carrotEntity)
@@ -135,9 +135,6 @@ struct TameARViewContainer: UIViewRepresentable {
         arView.scene.addAnchor(anchorEntity)
         arView.scene.addAnchor(anchorCarrot)
         arView.scene.addAnchor(anchorMeat)
-        
-        anchorCarrot.position = SIMD3(0,0,-10)
-        anchorMeat.position = SIMD3(0,0,-10)
         
         // Store the ARView, model, and anchor entities in the context coordinator
         context.coordinator.arView = arView
@@ -264,7 +261,7 @@ struct TameARViewContainer: UIViewRepresentable {
             let cameraTransform = currentFrame.camera.transform
             
             // Extract the translation component from the matrix (which represents the position)
-            let cameraPosition = SIMD3<Float>(0, 0, -2)
+            let cameraPosition = SIMD3<Float>(0, -2, -3)
 
             // Calculate the forward direction vector based on the camera's rotation
             let forwardDirection = SIMD3<Float>(x: -cameraTransform.columns.2.x, y: -cameraTransform.columns.2.y, z: -cameraTransform.columns.2.z)
@@ -282,7 +279,7 @@ struct TameARViewContainer: UIViewRepresentable {
 
             
             // Animate the model's position to the camera's position
-            moveEntity(modelEntity, to: targetPosition, rotation: lookAtRotation, duration: 1.95, cameraPos: lookPos) {
+            moveEntityToFood(modelEntity, to: targetPosition, duration: 1.95, cameraPos: lookPos) {
                 // Update the anchor's position in the world coordinates
                 anchorEntity.position = targetPosition
                 // Now that the model is positioned relative to the world, it won't follow the camera anymore
@@ -301,6 +298,16 @@ struct TameARViewContainer: UIViewRepresentable {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 entity.look(at: cameraPos, from: targetPosition, relativeTo: nil)
             }
+        }
+        
+        func moveEntityToFood(_ entity: Entity, to targetPosition: SIMD3<Float>, duration: TimeInterval, cameraPos: SIMD3<Float>, completion: (() -> Void)?) {
+            // Create a new transform with the target position
+            var targetTransform = entity.transform
+            targetTransform.translation = targetPosition
+            //targetTransform.rotation = rotation
+            
+            // Perform the move animation
+            entity.move(to: targetTransform, relativeTo: entity.parent, duration: duration, timingFunction: .easeInOut)
         }
     }
 }
