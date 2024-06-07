@@ -18,14 +18,14 @@ struct ContentView : View {
     @Environment(\.presentationMode) var presentationMode
     
     var isFed: Bool {
-        return recogd.feedMeat || recogd.feedVeg
+        return recogd.caught || recogd.escape
     }
     
     var body: some View {
         TameView(modelName: modelName, recogd: recogd, deleteOldAnimal: $deleteOldAnimal)
             .edgesIgnoringSafeArea(.all)
             .sheet(isPresented: .constant(isFed), content: {
-                SheetView(modelName: modelName)
+                SheetView(modelName: modelName, isCaptured: $isCaptured, recogd: recogd)
             })
             .navigationBarBackButtonHidden(true)
             .toolbar {
@@ -41,14 +41,22 @@ struct ContentView : View {
                     }
                 }
             }
+            .onChange(of: isCaptured) { newValue in
+                if newValue {
+                    self.presentationMode.wrappedValue.dismiss()
+                }
+            }
     }
 }
 
 struct SheetView: View {
     var modelName: String?
+    @Binding var isCaptured: Bool
     @Environment(\.dismiss) var dismiss
+    @Environment(\.presentationMode) var presentationMode
     @Environment(\.modelContext) private var context
     @EnvironmentObject var animalBlueprint: AnimalBlueprint
+    @ObservedObject var recogd: ModelRecognizer
     @State private var nickname = ""
     private let status = "Wild"
     
@@ -60,73 +68,88 @@ struct SheetView: View {
 
     var body: some View {
         VStack {
-            Text("Congratulations!")
-                .font(.system(.largeTitle, weight: .bold))
-                .padding(.top, 5)
-            Text("You caught a " + animalSetting!.genus)
-                .font(.system(.title, weight: .medium))
-            Animal3DNonInteractable(modelName: modelName!)
-                .frame(width: 300, height: 300)
-            TextField("Nickname", text: $nickname)
-                .padding()
-                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
-                .clipShape(RoundedRectangle(cornerRadius: 10))
-                .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(red: 142/255, green: 177/255, blue: 92/255), lineWidth: 2))
-                .padding(.horizontal)
-            HStack {
-                VStack {
-                    Text("Diet")
-                        .padding(.horizontal)
-                        .background(Color(red: 177/255, green: 207/255, blue: 134/255))
-                        .foregroundStyle(.white)
-                        .font(.system(.headline, weight: .bold))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    Text(animalSetting!.diet)
-                        .foregroundStyle(.white)
-                        .font(.system(.subheadline, weight: .bold))
+            if (recogd.caught) {
+                Text("Congratulations!")
+                    .font(.system(.largeTitle, weight: .bold))
+                    .padding(.top, 5)
+                Text("You caught a " + animalSetting!.genus)
+                    .font(.system(.title, weight: .medium))
+                Animal3DNonInteractable(modelName: modelName!)
+                    .frame(width: 300, height: 300)
+                TextField("Nickname", text: $nickname)
+                    .padding()
+                    .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(red: 142/255, green: 177/255, blue: 92/255), lineWidth: 2))
+                    .padding(.horizontal)
+                HStack {
+                    VStack {
+                        Text("Diet")
+                            .padding(.horizontal)
+                            .background(Color(red: 177/255, green: 207/255, blue: 134/255))
+                            .foregroundStyle(.white)
+                            .font(.system(.headline, weight: .bold))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                        Text(animalSetting!.diet)
+                            .foregroundStyle(.white)
+                            .font(.system(.subheadline, weight: .bold))
+                    }
+                    .padding()
+                    .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                    .cornerRadius(10)
+                    VStack {
+                        Text("Status")
+                            .padding(.horizontal)
+                            .background(Color(red: 177/255, green: 207/255, blue: 134/255))
+                            .foregroundStyle(.white)
+                            .font(.system(.headline, weight: .bold))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                        Text(status)
+                            .foregroundStyle(.white)
+                            .font(.system(.subheadline, weight: .bold))
+                    }
+                    .padding()
+                    .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                    .cornerRadius(10)
+                    VStack {
+                        Text("Habitat")
+                            .padding(.horizontal)
+                            .background(Color(red: 177/255, green: 207/255, blue: 134/255))
+                            .foregroundStyle(.white)
+                            .font(.system(.headline, weight: .bold))
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                        Text(animalSetting!.habitat)
+                            .foregroundStyle(.white)
+                            .font(.system(.subheadline, weight: .bold))
+                    }
+                    .padding()
+                    .background(Color(red: 160/255, green: 193/255, blue: 114/255))
+                    .cornerRadius(10)
                 }
-                .padding()
-                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
-                .cornerRadius(10)
-                VStack {
-                    Text("Status")
-                        .padding(.horizontal)
-                        .background(Color(red: 177/255, green: 207/255, blue: 134/255))
-                        .foregroundStyle(.white)
-                        .font(.system(.headline, weight: .bold))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    Text(status)
-                        .foregroundStyle(.white)
-                        .font(.system(.subheadline, weight: .bold))
-                }
-                .padding()
-                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
-                .cornerRadius(10)
-                VStack {
-                    Text("Habitat")
-                        .padding(.horizontal)
-                        .background(Color(red: 177/255, green: 207/255, blue: 134/255))
-                        .foregroundStyle(.white)
-                        .font(.system(.headline, weight: .bold))
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                    Text(animalSetting!.habitat)
-                        .foregroundStyle(.white)
-                        .font(.system(.subheadline, weight: .bold))
-                }
-                .padding()
-                .background(Color(red: 160/255, green: 193/255, blue: 114/255))
-                .cornerRadius(10)
+                .padding(.vertical)
+            } else {
+                Text("You Failed!")
+                    .font(.system(.largeTitle, weight: .bold))
+                    .padding(.top, 5)
+                Animal3DNonInteractable(modelName: modelName!)
+                    .frame(width: 300, height: 300)
+                Text("The " + animalSetting!.genus + " Escaped!")
+                    .font(.system(.title, weight: .medium))
+                Text("Next time try to feed it " + (animalSetting!.diet == "Carnivore" ? "Meat!" : "Veggie!"))
+                    .font(.system(.title, weight: .medium))
             }
-            .padding(.vertical)
             Button("DONE") {
-                let animal = Animal(name: nickname, genus: animalSetting!.genus, diet: animalSetting!.diet, habitat: animalSetting!.habitat, status: status, happy: 0, clean: 0, hunger: 0, date: Date.now)
-                context.insert(animal)
-                do {
-                    try context.save()
-                } catch {
-                    print(error.localizedDescription)
+                if (recogd.caught) {
+                    let animal = Animal(name: nickname, genus: animalSetting!.genus, diet: animalSetting!.diet, habitat: animalSetting!.habitat, status: status, happy: 0, clean: 0, hunger: 0, date: Date.now)
+                    context.insert(animal)
+                    do {
+                        try context.save()
+                    } catch {
+                        print(error.localizedDescription)
+                    }
                 }
-                
+                recogd.resetVariables()
+                isCaptured = true
             }
             .foregroundStyle(.white)
             .font(.system(.largeTitle, weight: .bold))

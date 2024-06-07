@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6AA88F1C2C104B6500DF94C0 /* AnimalBlueprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AA88F1B2C104B6500DF94C0 /* AnimalBlueprint.swift */; };
-		6AA88F202C11AA8A00DF94C0 /* Meat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AA88F1F2C11AA8A00DF94C0 /* Meat.usdz */; };
-		6AA88F222C11AA9E00DF94C0 /* Carrot.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AA88F212C11AA9E00DF94C0 /* Carrot.usdz */; };
-		6AA88F242C11AAA600DF94C0 /* Cow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AA88F232C11AAA600DF94C0 /* Cow.usdz */; };
 		6AB889E12C0725D600D4D0AD /* Shiba.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 6AB889E02C0725D600D4D0AD /* Shiba.usdz */; };
 		6AE7D0792C0DA3C900F95D2C /* SanctuaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */; };
 		6AE7D07B2C0DA62300F95D2C /* Animal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE7D07A2C0DA62300F95D2C /* Animal.swift */; };
@@ -19,6 +16,7 @@
 		6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */; };
 		6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */; };
 		6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93E82C05C4E7003A54F5 /* HomeView.swift */; };
+		715A1A532C11C8EF00EC34ED /* sapi.scn in Resources */ = {isa = PBXBuildFile; fileRef = 715A1A522C11C8EF00EC34ED /* sapi.scn */; };
 		925F763E2C0886380048DB93 /* TameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763D2C0886380048DB93 /* TameView.swift */; };
 		925F76402C0886910048DB93 /* ModelRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763F2C0886910048DB93 /* ModelRecognizer.swift */; };
 		925F76502C119C000048DB93 /* Cow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 925F764F2C119C000048DB93 /* Cow.usdz */; };
@@ -28,9 +26,6 @@
 
 /* Begin PBXFileReference section */
 		6AA88F1B2C104B6500DF94C0 /* AnimalBlueprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimalBlueprint.swift; sourceTree = "<group>"; };
-		6AA88F1F2C11AA8A00DF94C0 /* Meat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Meat.usdz; path = ../../../../Downloads/Meat.usdz; sourceTree = "<group>"; };
-		6AA88F212C11AA9E00DF94C0 /* Carrot.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Carrot.usdz; path = ../../../../Downloads/Carrot.usdz; sourceTree = "<group>"; };
-		6AA88F232C11AAA600DF94C0 /* Cow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Cow.usdz; path = ../../../../Downloads/Cow.usdz; sourceTree = "<group>"; };
 		6AB889E02C0725D600D4D0AD /* Shiba.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Shiba.usdz; sourceTree = "<group>"; };
 		6ACA571A2C09C544009279B7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SanctuaryView.swift; sourceTree = "<group>"; };
@@ -41,6 +36,7 @@
 		6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AEC93E82C05C4E7003A54F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		715A1A522C11C8EF00EC34ED /* sapi.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = sapi.scn; path = ../../sapi.scn; sourceTree = "<group>"; };
 		925F763D2C0886380048DB93 /* TameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TameView.swift; sourceTree = "<group>"; };
 		925F763F2C0886910048DB93 /* ModelRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRecognizer.swift; sourceTree = "<group>"; };
 		925F764F2C119C000048DB93 /* Cow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Cow.usdz; sourceTree = "<group>"; };
@@ -93,6 +89,7 @@
 				6AEC93DE2C05C2F2003A54F5 /* Assets.xcassets */,
 				6AE7D0782C0DA3C900F95D2C /* SanctuaryView.swift */,
 				6AEC93E82C05C4E7003A54F5 /* HomeView.swift */,
+				715A1A522C11C8EF00EC34ED /* sapi.scn */,
 				6AEC93E02C05C2F2003A54F5 /* Preview Content */,
 				925F763D2C0886380048DB93 /* TameView.swift */,
 				925F763F2C0886910048DB93 /* ModelRecognizer.swift */,
@@ -172,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				925F76502C119C000048DB93 /* Cow.usdz in Resources */,
+				715A1A532C11C8EF00EC34ED /* sapi.scn in Resources */,
 				6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */,
 				6AEC93DF2C05C2F2003A54F5 /* Assets.xcassets in Resources */,
 				925F76522C119C090048DB93 /* Meat.usdz in Resources */,
@@ -328,7 +326,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Kawan/Preview Content\"";
-				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				DEVELOPMENT_TEAM = KKTJNS7KB7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kawan/Info.plist;
@@ -361,7 +359,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Kawan/Preview Content\"";
-				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				DEVELOPMENT_TEAM = KKTJNS7KB7;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Kawan/Info.plist;
