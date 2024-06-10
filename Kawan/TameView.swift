@@ -9,9 +9,9 @@
 import SwiftUI
 import RealityKit
 import ARKit
-import Combine
-import AVFoundation
-import Vision
+//import Combine
+//import AVFoundation
+//import Vision
 import simd
 
 
@@ -82,6 +82,8 @@ struct TameARViewContainer: UIViewRepresentable {
     @State var foodName: String?
     @State var showMeat = false
     @State var showVeg = false
+    @State private var animationController: AnimationPlaybackController?
+
 
     func makeUIView(context: Context) -> ARView {
         let arView = recogd.aView
@@ -90,26 +92,17 @@ struct TameARViewContainer: UIViewRepresentable {
         arView.session.run(configuration)
         
         
-//        if deleteOldAnimal{
-//            for anchor in recogd.aView.scene.anchors {
-//                recogd.aView.scene.removeAnchor(anchor)
-//            }
-//            deleteOldAnimal = false
-//        }
-        
-        
         // Load the model and add it to the scene
         let modelEntity = try! Entity.loadModel(named: modelName!)
         modelEntity.name = "Animal"
         
-        if modelName!.contains("Cow.usdz"){
+        if modelName!.contains("sapi 2.usdz"){
             modelEntity.scale = SIMD3<Float>(0.4, 0.4, 0.4)
-            
-            //chage animations later
-            for anim in modelEntity.availableAnimations {
-                modelEntity.playAnimation(anim.repeat(duration: .infinity),
-                                          transitionDuration: 1.25,
-                                          startsPaused: false)
+            // Get the animation resource and controller
+            if let animationResource = modelEntity.availableAnimations.first?.repeat() {
+                animationController = modelEntity.playAnimation(animationResource, transitionDuration: 0, startsPaused: true)
+                        
+                playAnimation(from: 9.5, to: 19)
             }
         }
         
@@ -124,7 +117,7 @@ struct TameARViewContainer: UIViewRepresentable {
         meatEntity.scale = SIMD3<Float>(0.0015, 0.0015, 0.0015)
         
         
-        let anchorEntity = AnchorEntity(world: [0, -2, -3])
+        let anchorEntity = AnchorEntity(world: [0, -3, -3.5])
         let anchorCarrot = AnchorEntity(world: [-0.5, -2, -3])
         let anchorMeat = AnchorEntity(world: [0, -2, -3])
         
@@ -158,27 +151,54 @@ struct TameARViewContainer: UIViewRepresentable {
                 }
                 
                 //animate eating here
+//                playSpecificAnimation(modelEntity: modelEntity, animationName: "Animation 3")
+                playAnimation(from: 19.5, to: 21.8)
+
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     context.coordinator.moveModelToFeedPosition()
 
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4){
                         if recogd.spawnMeat{
-                            let key = modelName!.replacingOccurrences(of: ".usdz", with: "")
+                            let key = modelName!
                             if animalBlueprint.animalDict[key]!.diet.contains("Carnivore"){
-                                recogd.feedMeat = true
-                                recogd.caught = true
+                                
+                                playAnimation(from: 24.5, to: 26.5)
+
+                                playAnimation(from: 1, to: 3)
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    recogd.feedMeat = true
+                                    recogd.caught = true
+                                }
+                                
                             }else{
-                                recogd.escape = true
+                                playAnimation(from: 21.8, to: 24.2)
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    recogd.escape = true
+                                }
                             }
                         }
                         if recogd.spawnVeggie{
-                            let key = modelName!.replacingOccurrences(of: ".usdz", with: "")
+                            let key = modelName!
                             if animalBlueprint.animalDict[key]!.diet.contains("Herbivore"){
-                                recogd.feedVeg = true
-                                recogd.caught = true
+                                
+                                playAnimation(from: 24.5, to: 26.5)
+
+                                playAnimation(from: 1, to: 3)
+
+                                
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                                    recogd.feedVeg = true
+                                    recogd.caught = true
+                                }
                             }else{
-                                recogd.escape = true
+                                playAnimation(from: 21.8, to: 24.2)
+
+                                DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                                    recogd.escape = true
+                                }
                             }
                         }
                     }
@@ -186,11 +206,23 @@ struct TameARViewContainer: UIViewRepresentable {
                 
             } else if recogd.isPinching{
                 context.coordinator.moveModelToUserPosition()
+//                playSpecificAnimation(modelEntity: modelEntity, animationName: "Animation 8")
+                playAnimation(from: 8, to: 9.5)
+
                 spawnFood = true
             }
         })
         return arView
     }
+    
+//    func playSpecificAnimation(modelEntity: ModelEntity, animationName: String) {
+//            if let animationResource = modelEntity.availableAnimations.first(where: { $0.name == animationName }) {
+//                modelEntity.playAnimation(animationResource.repeat(duration: .infinity))
+//            } else {
+//                print("Animation \(animationName) not found.")
+//            }
+//        }
+    
     
     func updateUIView(_ uiView: ARView, context: Context) {
         if !uiView.scene.anchors.isEmpty {
@@ -203,6 +235,18 @@ struct TameARViewContainer: UIViewRepresentable {
         }
         
 
+    }
+    
+    private func playAnimation(from startTime: TimeInterval, to endTime: TimeInterval) {
+        guard let animationController = animationController else { return }
+        
+        animationController.pause()
+        animationController.time = startTime
+        animationController.resume()
+            
+        DispatchQueue.main.asyncAfter(deadline: .now() + endTime - startTime) {
+            animationController.pause()
+        }
     }
     
     func makeCoordinator() -> Coordinator {
@@ -237,7 +281,7 @@ struct TameARViewContainer: UIViewRepresentable {
             let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
 
             // Calculate the position in front of the camera
-            let targetPosition = cameraPosition + forwardDirection * 3.5 // Move 1.5 meters in front of the camera
+            let targetPosition = cameraPosition + forwardDirection * 4.5 // Move 1.5 meters in front of the camera
             
             let lookPos = cameraPosition + forwardDirection * 100
 
@@ -266,11 +310,8 @@ struct TameARViewContainer: UIViewRepresentable {
             // Calculate the forward direction vector based on the camera's rotation
             let forwardDirection = SIMD3<Float>(x: -cameraTransform.columns.2.x, y: -cameraTransform.columns.2.y, z: -cameraTransform.columns.2.z)
             
-            // Calculate the direction from the entity to the camera
-            let cameraDirection = normalize(cameraTransform.translation - anchorEntity.position)
-            
-            // Calculate the rotation quaternion to face the camera
-            let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
+//            // Calculate the direction from the entity to the camera
+//            let cameraDirection = normalize(cameraTransform.translation - anchorEntity.position)
 
             // Calculate the position in front of the camera
             let targetPosition = cameraPosition + forwardDirection * 1.0

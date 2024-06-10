@@ -6,9 +6,9 @@
 //
 import SwiftUI
 import RealityKit
-import CoreML
+//import CoreML
 import Vision
-import SceneKit
+//import SceneKit
 import ARKit
 
 

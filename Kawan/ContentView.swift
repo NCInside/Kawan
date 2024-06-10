@@ -62,7 +62,7 @@ struct SheetView: View {
     
     private var animalSetting: AnimalBlueprint.animalSetting? {
         guard let modelName = modelName else { return nil }
-        let key = modelName.replacingOccurrences(of: ".usdz", with: "")
+        let key = modelName
         return animalBlueprint.animalDict[key]
     }
 

@@ -26,7 +26,7 @@ struct HomeView: View {
                     .frame(width: 350)
                     .overlay(
                         ForEach(positions, id: \.self) { position in
-                            Animal3DInteractable(modelName: animalBlueprint.animalDict.keys.randomElement()! + ".usdz", navigateToContentView: $goToAnimal, selectedModelName: $selectedModelName)
+                            Animal3DInteractable(modelName: animalBlueprint.animalDict.keys.randomElement()!, navigateToContentView: $goToAnimal, selectedModelName: $selectedModelName)
                                 .frame(width: 120, height: 120)
                                 .position(position.point)
                         }
