@@ -1,0 +1,571 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		921F4A272CC9F3A30063BA5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 921F4A0C2CC9F3A20063BA5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 921F4A132CC9F3A20063BA5E;
+			remoteInfo = LO_Rekam;
+		};
+		921F4A312CC9F3A30063BA5E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 921F4A0C2CC9F3A20063BA5E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 921F4A132CC9F3A20063BA5E;
+			remoteInfo = LO_Rekam;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		921F4A142CC9F3A20063BA5E /* LO_Rekam.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LO_Rekam.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		921F4A262CC9F3A30063BA5E /* LO_RekamTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LO_RekamTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		921F4A302CC9F3A30063BA5E /* LO_RekamUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LO_RekamUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		921F4A162CC9F3A20063BA5E /* LO_Rekam */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LO_Rekam;
+			sourceTree = "<group>";
+		};
+		921F4A292CC9F3A30063BA5E /* LO_RekamTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LO_RekamTests;
+			sourceTree = "<group>";
+		};
+		921F4A332CC9F3A30063BA5E /* LO_RekamUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = LO_RekamUITests;
+			sourceTree = "<group>";
+		};
+		921F4A672CCA036A0063BA5E /* PostProcessing */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = PostProcessing;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		921F4A112CC9F3A20063BA5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921F4A232CC9F3A30063BA5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921F4A2D2CC9F3A30063BA5E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		921F4A0B2CC9F3A20063BA5E = {
+			isa = PBXGroup;
+			children = (
+				921F4A162CC9F3A20063BA5E /* LO_Rekam */,
+				921F4A292CC9F3A30063BA5E /* LO_RekamTests */,
+				921F4A332CC9F3A30063BA5E /* LO_RekamUITests */,
+				921F4A672CCA036A0063BA5E /* PostProcessing */,
+				921F4A152CC9F3A20063BA5E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		921F4A152CC9F3A20063BA5E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				921F4A142CC9F3A20063BA5E /* LO_Rekam.app */,
+				921F4A262CC9F3A30063BA5E /* LO_RekamTests.xctest */,
+				921F4A302CC9F3A30063BA5E /* LO_RekamUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		921F4A132CC9F3A20063BA5E /* LO_Rekam */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 921F4A3A2CC9F3A30063BA5E /* Build configuration list for PBXNativeTarget "LO_Rekam" */;
+			buildPhases = (
+				921F4A102CC9F3A20063BA5E /* Sources */,
+				921F4A112CC9F3A20063BA5E /* Frameworks */,
+				921F4A122CC9F3A20063BA5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				921F4A162CC9F3A20063BA5E /* LO_Rekam */,
+			);
+			name = LO_Rekam;
+			packageProductDependencies = (
+			);
+			productName = LO_Rekam;
+			productReference = 921F4A142CC9F3A20063BA5E /* LO_Rekam.app */;
+			productType = "com.apple.product-type.application";
+		};
+		921F4A252CC9F3A30063BA5E /* LO_RekamTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 921F4A3D2CC9F3A30063BA5E /* Build configuration list for PBXNativeTarget "LO_RekamTests" */;
+			buildPhases = (
+				921F4A222CC9F3A30063BA5E /* Sources */,
+				921F4A232CC9F3A30063BA5E /* Frameworks */,
+				921F4A242CC9F3A30063BA5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				921F4A282CC9F3A30063BA5E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				921F4A292CC9F3A30063BA5E /* LO_RekamTests */,
+			);
+			name = LO_RekamTests;
+			packageProductDependencies = (
+			);
+			productName = LO_RekamTests;
+			productReference = 921F4A262CC9F3A30063BA5E /* LO_RekamTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		921F4A2F2CC9F3A30063BA5E /* LO_RekamUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 921F4A402CC9F3A30063BA5E /* Build configuration list for PBXNativeTarget "LO_RekamUITests" */;
+			buildPhases = (
+				921F4A2C2CC9F3A30063BA5E /* Sources */,
+				921F4A2D2CC9F3A30063BA5E /* Frameworks */,
+				921F4A2E2CC9F3A30063BA5E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				921F4A322CC9F3A30063BA5E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				921F4A332CC9F3A30063BA5E /* LO_RekamUITests */,
+			);
+			name = LO_RekamUITests;
+			packageProductDependencies = (
+			);
+			productName = LO_RekamUITests;
+			productReference = 921F4A302CC9F3A30063BA5E /* LO_RekamUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		921F4A0C2CC9F3A20063BA5E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					921F4A132CC9F3A20063BA5E = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					921F4A252CC9F3A30063BA5E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 921F4A132CC9F3A20063BA5E;
+					};
+					921F4A2F2CC9F3A30063BA5E = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 921F4A132CC9F3A20063BA5E;
+					};
+				};
+			};
+			buildConfigurationList = 921F4A0F2CC9F3A20063BA5E /* Build configuration list for PBXProject "LO_Rekam" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 921F4A0B2CC9F3A20063BA5E;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 921F4A152CC9F3A20063BA5E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				921F4A132CC9F3A20063BA5E /* LO_Rekam */,
+				921F4A252CC9F3A30063BA5E /* LO_RekamTests */,
+				921F4A2F2CC9F3A30063BA5E /* LO_RekamUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		921F4A122CC9F3A20063BA5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921F4A242CC9F3A30063BA5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921F4A2E2CC9F3A30063BA5E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		921F4A102CC9F3A20063BA5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921F4A222CC9F3A30063BA5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		921F4A2C2CC9F3A30063BA5E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		921F4A282CC9F3A30063BA5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 921F4A132CC9F3A20063BA5E /* LO_Rekam */;
+			targetProxy = 921F4A272CC9F3A30063BA5E /* PBXContainerItemProxy */;
+		};
+		921F4A322CC9F3A30063BA5E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 921F4A132CC9F3A20063BA5E /* LO_Rekam */;
+			targetProxy = 921F4A312CC9F3A30063BA5E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		921F4A382CC9F3A30063BA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		921F4A392CC9F3A30063BA5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		921F4A3B2CC9F3A30063BA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"LO_Rekam/Preview Content\"";
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "this will use camera for AR purposes";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ndylan.LO-Rekam";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		921F4A3C2CC9F3A30063BA5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"LO_Rekam/Preview Content\"";
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "this will use camera for AR purposes";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ndylan.LO-Rekam";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		921F4A3E2CC9F3A30063BA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ndylan.LO-RekamTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LO_Rekam.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LO_Rekam";
+			};
+			name = Debug;
+		};
+		921F4A3F2CC9F3A30063BA5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ndylan.LO-RekamTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LO_Rekam.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/LO_Rekam";
+			};
+			name = Release;
+		};
+		921F4A412CC9F3A30063BA5E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ndylan.LO-RekamUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LO_Rekam;
+			};
+			name = Debug;
+		};
+		921F4A422CC9F3A30063BA5E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = RSBCF2NM6N;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "ndylan.LO-RekamUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = LO_Rekam;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		921F4A0F2CC9F3A20063BA5E /* Build configuration list for PBXProject "LO_Rekam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				921F4A382CC9F3A30063BA5E /* Debug */,
+				921F4A392CC9F3A30063BA5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		921F4A3A2CC9F3A30063BA5E /* Build configuration list for PBXNativeTarget "LO_Rekam" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				921F4A3B2CC9F3A30063BA5E /* Debug */,
+				921F4A3C2CC9F3A30063BA5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		921F4A3D2CC9F3A30063BA5E /* Build configuration list for PBXNativeTarget "LO_RekamTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				921F4A3E2CC9F3A30063BA5E /* Debug */,
+				921F4A3F2CC9F3A30063BA5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		921F4A402CC9F3A30063BA5E /* Build configuration list for PBXNativeTarget "LO_RekamUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				921F4A412CC9F3A30063BA5E /* Debug */,
+				921F4A422CC9F3A30063BA5E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 921F4A0C2CC9F3A20063BA5E /* Project object */;
+}

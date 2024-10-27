@@ -17,6 +17,17 @@
 		6AEC93E22C05C2F2003A54F5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */; };
 		6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEC93E82C05C4E7003A54F5 /* HomeView.swift */; };
 		715A1A532C11C8EF00EC34ED /* sapi.scn in Resources */ = {isa = PBXBuildFile; fileRef = 715A1A522C11C8EF00EC34ED /* sapi.scn */; };
+		920C3EA62CC9D5BB00065704 /* CharacterStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920C3EA52CC9D5BB00065704 /* CharacterStates.swift */; };
+		920C3EB12CC9D83900065704 /* dogeat.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EA82CC9D83900065704 /* dogeat.usdz */; };
+		920C3EB22CC9D83900065704 /* dogidle1.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EA92CC9D83900065704 /* dogidle1.usdz */; };
+		920C3EB32CC9D83900065704 /* dogwalk.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EAF2CC9D83900065704 /* dogwalk.usdz */; };
+		920C3EB42CC9D83900065704 /* dogright.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EAC2CC9D83900065704 /* dogright.usdz */; };
+		920C3EB52CC9D83900065704 /* dogNLA.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EAB2CC9D83900065704 /* dogNLA.usdz */; };
+		920C3EB62CC9D83900065704 /* dogsleep.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EAD2CC9D83900065704 /* dogsleep.usdz */; };
+		920C3EB72CC9D83900065704 /* dogstand.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EAE2CC9D83900065704 /* dogstand.usdz */; };
+		920C3EB82CC9D83900065704 /* dogwrong.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EB02CC9D83900065704 /* dogwrong.usdz */; };
+		920C3EB92CC9D83900065704 /* dogidle2.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 920C3EAA2CC9D83900065704 /* dogidle2.usdz */; };
+		920C3EBB2CC9D9F700065704 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920C3EBA2CC9D9F700065704 /* Character.swift */; };
 		925F763E2C0886380048DB93 /* TameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763D2C0886380048DB93 /* TameView.swift */; };
 		925F76402C0886910048DB93 /* ModelRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925F763F2C0886910048DB93 /* ModelRecognizer.swift */; };
 		925F76502C119C000048DB93 /* Cow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 925F764F2C119C000048DB93 /* Cow.usdz */; };
@@ -37,6 +48,17 @@
 		6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		6AEC93E82C05C4E7003A54F5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		715A1A522C11C8EF00EC34ED /* sapi.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; name = sapi.scn; path = ../../sapi.scn; sourceTree = "<group>"; };
+		920C3EA52CC9D5BB00065704 /* CharacterStates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStates.swift; sourceTree = "<group>"; };
+		920C3EA82CC9D83900065704 /* dogeat.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogeat.usdz; sourceTree = "<group>"; };
+		920C3EA92CC9D83900065704 /* dogidle1.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogidle1.usdz; sourceTree = "<group>"; };
+		920C3EAA2CC9D83900065704 /* dogidle2.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogidle2.usdz; sourceTree = "<group>"; };
+		920C3EAB2CC9D83900065704 /* dogNLA.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogNLA.usdz; sourceTree = "<group>"; };
+		920C3EAC2CC9D83900065704 /* dogright.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogright.usdz; sourceTree = "<group>"; };
+		920C3EAD2CC9D83900065704 /* dogsleep.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogsleep.usdz; sourceTree = "<group>"; };
+		920C3EAE2CC9D83900065704 /* dogstand.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogstand.usdz; sourceTree = "<group>"; };
+		920C3EAF2CC9D83900065704 /* dogwalk.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogwalk.usdz; sourceTree = "<group>"; };
+		920C3EB02CC9D83900065704 /* dogwrong.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = dogwrong.usdz; sourceTree = "<group>"; };
+		920C3EBA2CC9D9F700065704 /* Character.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Character.swift; sourceTree = "<group>"; };
 		925F763D2C0886380048DB93 /* TameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TameView.swift; sourceTree = "<group>"; };
 		925F763F2C0886910048DB93 /* ModelRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelRecognizer.swift; sourceTree = "<group>"; };
 		925F764F2C119C000048DB93 /* Cow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = Cow.usdz; sourceTree = "<group>"; };
@@ -82,6 +104,8 @@
 		6AEC93D92C05C2F1003A54F5 /* Kawan */ = {
 			isa = PBXGroup;
 			children = (
+				920C3EBA2CC9D9F700065704 /* Character.swift */,
+				920C3EA52CC9D5BB00065704 /* CharacterStates.swift */,
 				6AE7D07A2C0DA62300F95D2C /* Animal.swift */,
 				6ACA571A2C09C544009279B7 /* Info.plist */,
 				6AEC93DA2C05C2F1003A54F5 /* AppDelegate.swift */,
@@ -101,6 +125,7 @@
 		6AEC93E02C05C2F2003A54F5 /* Preview Content */ = {
 			isa = PBXGroup;
 			children = (
+				920C3EA72CC9D7FE00065704 /* Dog */,
 				925F764F2C119C000048DB93 /* Cow.usdz */,
 				925F76532C119C110048DB93 /* Carrot.usdz */,
 				925F76512C119C090048DB93 /* Meat.usdz */,
@@ -108,6 +133,22 @@
 				6AEC93E12C05C2F2003A54F5 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		920C3EA72CC9D7FE00065704 /* Dog */ = {
+			isa = PBXGroup;
+			children = (
+				920C3EA82CC9D83900065704 /* dogeat.usdz */,
+				920C3EA92CC9D83900065704 /* dogidle1.usdz */,
+				920C3EAA2CC9D83900065704 /* dogidle2.usdz */,
+				920C3EAB2CC9D83900065704 /* dogNLA.usdz */,
+				920C3EAC2CC9D83900065704 /* dogright.usdz */,
+				920C3EAD2CC9D83900065704 /* dogsleep.usdz */,
+				920C3EAE2CC9D83900065704 /* dogstand.usdz */,
+				920C3EAF2CC9D83900065704 /* dogwalk.usdz */,
+				920C3EB02CC9D83900065704 /* dogwrong.usdz */,
+			);
+			path = Dog;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -175,6 +216,15 @@
 				925F76522C119C090048DB93 /* Meat.usdz in Resources */,
 				6AB889E12C0725D600D4D0AD /* Shiba.usdz in Resources */,
 				925F76542C119C110048DB93 /* Carrot.usdz in Resources */,
+				920C3EB12CC9D83900065704 /* dogeat.usdz in Resources */,
+				920C3EB22CC9D83900065704 /* dogidle1.usdz in Resources */,
+				920C3EB32CC9D83900065704 /* dogwalk.usdz in Resources */,
+				920C3EB42CC9D83900065704 /* dogright.usdz in Resources */,
+				920C3EB52CC9D83900065704 /* dogNLA.usdz in Resources */,
+				920C3EB62CC9D83900065704 /* dogsleep.usdz in Resources */,
+				920C3EB72CC9D83900065704 /* dogstand.usdz in Resources */,
+				920C3EB82CC9D83900065704 /* dogwrong.usdz in Resources */,
+				920C3EB92CC9D83900065704 /* dogidle2.usdz in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -190,7 +240,9 @@
 				6AEC93E92C05C4E7003A54F5 /* HomeView.swift in Sources */,
 				6AEC93DD2C05C2F1003A54F5 /* ContentView.swift in Sources */,
 				925F76402C0886910048DB93 /* ModelRecognizer.swift in Sources */,
+				920C3EA62CC9D5BB00065704 /* CharacterStates.swift in Sources */,
 				6AEC93DB2C05C2F1003A54F5 /* AppDelegate.swift in Sources */,
+				920C3EBB2CC9D9F700065704 /* Character.swift in Sources */,
 				6AE7D0792C0DA3C900F95D2C /* SanctuaryView.swift in Sources */,
 				6AA88F1C2C104B6500DF94C0 /* AnimalBlueprint.swift in Sources */,
 			);

@@ -15,61 +15,74 @@ import ARKit
 import simd
 
 
+enum AnimationAssets: String, AnimationAssetNames {
+    
+    case diver_anim_stand_idle
+    case diver_anim_walk
+    case diver_anim_jumpdown_whole_noroot
+    
+    var assetName: String { "Diver/\(rawValue)" }
+}
+
+protocol AnimationAssetNames: Hashable, CaseIterable {
+    var assetName: String { get }
+}
+
 struct TameView : View {
     var modelName: String?
     @ObservedObject var recogd: ModelRecognizer = .shared
     @State var spawnFood = false
     @Binding var deleteOldAnimal: Bool
     @GestureState private var isLongPressing = false
-
+    
     var body: some View {
-            ZStack {
-                TameARViewContainer(modelName: modelName, spawnFood: $spawnFood, deleteOldAnimal: $deleteOldAnimal)
-                
-                if spawnFood{
-                    VStack{
-                        Spacer()
-                        HStack{
-                            Button(action: {
-                                // Action to perform when the button is tapped
-                            }) {
-                                Image("vegBag")
-                                    .resizable()
-                                    .frame(width:150, height: 150)
-                                    .padding(.leading)
-                            }
-                            .simultaneousGesture(
-                                LongPressGesture(minimumDuration: 1.0).onEnded { _ in
-                                    // Your action for long press
-                                    recogd.spawnVeggie = true
-                                    spawnFood = false
-                                    print("Fed Veg")
-                                }
-                            )
-                            
-                            Spacer()
-                            
-                            Button(action: {
-                                // Action to perform when the button is tapped
-                            }) {
-                                Image("metBag")
-                                    .resizable()
-                                    .frame(width:150, height: 150)
-                                    .padding(.trailing)
-                            }
-                            .simultaneousGesture(
-                                LongPressGesture(minimumDuration: 1.0).onEnded { _ in
-                                    // Your action for long press
-                                    recogd.spawnMeat = true
-                                    spawnFood = false
-                                    print("Fed Meat")
-                                }
-                            )
+        ZStack {
+            TameARViewContainer(modelName: modelName, spawnFood: $spawnFood, deleteOldAnimal: $deleteOldAnimal)
+            
+            if spawnFood{
+                VStack{
+                    Spacer()
+                    HStack{
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            Image("vegBag")
+                                .resizable()
+                                .frame(width:150, height: 150)
+                                .padding(.leading)
                         }
+                        .simultaneousGesture(
+                            LongPressGesture(minimumDuration: 1.0).onEnded { _ in
+                                // Your action for long press
+                                recogd.spawnVeggie = true
+                                spawnFood = false
+                                print("Fed Veg")
+                            }
+                        )
+                        
+                        Spacer()
+                        
+                        Button(action: {
+                            // Action to perform when the button is tapped
+                        }) {
+                            Image("metBag")
+                                .resizable()
+                                .frame(width:150, height: 150)
+                                .padding(.trailing)
+                        }
+                        .simultaneousGesture(
+                            LongPressGesture(minimumDuration: 1.0).onEnded { _ in
+                                // Your action for long press
+                                recogd.spawnMeat = true
+                                spawnFood = false
+                                print("Fed Meat")
+                            }
+                        )
                     }
                 }
             }
         }
+    }
 }
 
 
@@ -83,8 +96,8 @@ struct TameARViewContainer: UIViewRepresentable {
     @State var showMeat = false
     @State var showVeg = false
     @State private var animationController: AnimationPlaybackController?
-
-
+    
+    
     func makeUIView(context: Context) -> ARView {
         let arView = recogd.aView
         // Create an AR session configuration
@@ -101,7 +114,7 @@ struct TameARViewContainer: UIViewRepresentable {
             // Get the animation resource and controller
             if let animationResource = modelEntity.availableAnimations.first?.repeat() {
                 animationController = modelEntity.playAnimation(animationResource, transitionDuration: 0, startsPaused: true)
-                        
+                
                 playAnimation(from: 9.5, to: 19)
             }
         }
@@ -110,7 +123,7 @@ struct TameARViewContainer: UIViewRepresentable {
         carrotEntity.name = "carrot"
         
         carrotEntity.scale = SIMD3<Float>(0.0008, 0.0008, 0.0008)
-
+        
         let meatEntity = try! Entity.loadModel(named: "Meat.usdz")
         meatEntity.name = "meat"
         
@@ -137,10 +150,10 @@ struct TameARViewContainer: UIViewRepresentable {
         _ = Timer.scheduledTimer(withTimeInterval: 0.05, repeats: true, block: { _ in
             if recogd.spawnMeat || recogd.spawnVeggie{
                 context.coordinator.moveModelToFeedPosition()
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-//                    recogd.feedMeat = false
-//                    recogd.feedVeg = false
-//                }
+                //                DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                //                    recogd.feedMeat = false
+                //                    recogd.feedVeg = false
+                //                }
                 if recogd.spawnMeat{
                     showMeat = true
                     showVeg = false
@@ -151,12 +164,12 @@ struct TameARViewContainer: UIViewRepresentable {
                 }
                 
                 //animate eating here
-//                playSpecificAnimation(modelEntity: modelEntity, animationName: "Animation 3")
+                //                playSpecificAnimation(modelEntity: modelEntity, animationName: "Animation 3")
                 playAnimation(from: 19.5, to: 21.8)
-
+                
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                     context.coordinator.moveModelToFeedPosition()
-
+                    
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + 4){
                         if recogd.spawnMeat{
@@ -164,9 +177,9 @@ struct TameARViewContainer: UIViewRepresentable {
                             if animalBlueprint.animalDict[key]!.diet.contains("Carnivore"){
                                 
                                 playAnimation(from: 24.5, to: 26.5)
-
+                                
                                 playAnimation(from: 1, to: 3)
-
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     recogd.feedMeat = true
                                     recogd.caught = true
@@ -174,7 +187,7 @@ struct TameARViewContainer: UIViewRepresentable {
                                 
                             }else{
                                 playAnimation(from: 21.8, to: 24.2)
-
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                     recogd.escape = true
                                 }
@@ -185,9 +198,9 @@ struct TameARViewContainer: UIViewRepresentable {
                             if animalBlueprint.animalDict[key]!.diet.contains("Herbivore"){
                                 
                                 playAnimation(from: 24.5, to: 26.5)
-
+                                
                                 playAnimation(from: 1, to: 3)
-
+                                
                                 
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                                     recogd.feedVeg = true
@@ -195,7 +208,7 @@ struct TameARViewContainer: UIViewRepresentable {
                                 }
                             }else{
                                 playAnimation(from: 21.8, to: 24.2)
-
+                                
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
                                     recogd.escape = true
                                 }
@@ -206,22 +219,23 @@ struct TameARViewContainer: UIViewRepresentable {
                 
             } else if recogd.isPinching{
                 context.coordinator.moveModelToUserPosition()
-//                playSpecificAnimation(modelEntity: modelEntity, animationName: "Animation 8")
+                //                playSpecificAnimation(modelEntity: modelEntity, animationName: "Animation 8")
                 playAnimation(from: 8, to: 9.5)
-
+                
                 spawnFood = true
+            } else {
             }
         })
         return arView
     }
     
-//    func playSpecificAnimation(modelEntity: ModelEntity, animationName: String) {
-//            if let animationResource = modelEntity.availableAnimations.first(where: { $0.name == animationName }) {
-//                modelEntity.playAnimation(animationResource.repeat(duration: .infinity))
-//            } else {
-//                print("Animation \(animationName) not found.")
-//            }
-//        }
+    //    func playSpecificAnimation(modelEntity: ModelEntity, animationName: String) {
+    //            if let animationResource = modelEntity.availableAnimations.first(where: { $0.name == animationName }) {
+    //                modelEntity.playAnimation(animationResource.repeat(duration: .infinity))
+    //            } else {
+    //                print("Animation \(animationName) not found.")
+    //            }
+    //        }
     
     
     func updateUIView(_ uiView: ARView, context: Context) {
@@ -234,7 +248,7 @@ struct TameARViewContainer: UIViewRepresentable {
             }
         }
         
-
+        
     }
     
     private func playAnimation(from startTime: TimeInterval, to endTime: TimeInterval) {
@@ -243,7 +257,7 @@ struct TameARViewContainer: UIViewRepresentable {
         animationController.pause()
         animationController.time = startTime
         animationController.resume()
-            
+        
         DispatchQueue.main.asyncAfter(deadline: .now() + endTime - startTime) {
             animationController.pause()
         }
@@ -270,7 +284,7 @@ struct TameARViewContainer: UIViewRepresentable {
             
             // Extract the translation component from the matrix (which represents the position)
             let cameraPosition = SIMD3<Float>(x: cameraTransform.columns.3.x, y: cameraTransform.columns.3.y, z: cameraTransform.columns.3.z)
-
+            
             // Calculate the forward direction vector based on the camera's rotation
             let forwardDirection = SIMD3<Float>(x: -cameraTransform.columns.2.x, y: -cameraTransform.columns.2.y, z: -cameraTransform.columns.2.z)
             
@@ -279,12 +293,12 @@ struct TameARViewContainer: UIViewRepresentable {
             
             // Calculate the rotation quaternion to face the camera
             let lookAtRotation = simd_quatf(from: [0, 0, 1], to: cameraDirection)
-
+            
             // Calculate the position in front of the camera
             let targetPosition = cameraPosition + forwardDirection * 4.5 // Move 1.5 meters in front of the camera
             
             let lookPos = cameraPosition + forwardDirection * 100
-
+            
             
             // Animate the model's position to the camera's position
             moveEntity(modelEntity, to: targetPosition, rotation: lookAtRotation, duration: 1.4, cameraPos: lookPos) {
@@ -306,18 +320,18 @@ struct TameARViewContainer: UIViewRepresentable {
             
             // Extract the translation component from the matrix (which represents the position)
             let cameraPosition = SIMD3<Float>(0, -2, -3)
-
+            
             // Calculate the forward direction vector based on the camera's rotation
             let forwardDirection = SIMD3<Float>(x: -cameraTransform.columns.2.x, y: -cameraTransform.columns.2.y, z: -cameraTransform.columns.2.z)
             
-//            // Calculate the direction from the entity to the camera
-//            let cameraDirection = normalize(cameraTransform.translation - anchorEntity.position)
-
+            //            // Calculate the direction from the entity to the camera
+            //            let cameraDirection = normalize(cameraTransform.translation - anchorEntity.position)
+            
             // Calculate the position in front of the camera
             let targetPosition = cameraPosition + forwardDirection * 1.0
             
             let lookPos = cameraPosition + forwardDirection * 100
-
+            
             
             // Animate the model's position to the camera's position
             moveEntityToFood(modelEntity, to: targetPosition, duration: 1.95, cameraPos: lookPos) {

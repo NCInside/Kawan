@@ -22,7 +22,7 @@ class ModelRecognizer: ObservableObject {
     
     static let shared = ModelRecognizer()
     
-    @Published var aView = ARView(frame: .zero)
+    @Published public var aView = UnderwaterView(frame: .zero)
     @Published var isPinching: Bool = false
     @Published var spawnMeat: Bool = false
     @Published var spawnVeggie: Bool = false
